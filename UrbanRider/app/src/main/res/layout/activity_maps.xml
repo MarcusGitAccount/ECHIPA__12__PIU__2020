@@ -23,11 +23,12 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         tools:context=".MapsActivity"
         app:layout_constraintTop_toBottomOf="@id/mainToolbar"/>
 
     <LinearLayout
+        android:id="@+id/searchControlsLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,9 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_gravity="center"
             android:orientation="horizontal"
-            android:layout_gravity="center">
-
+            android:background="@color/urbanDarkGreen">
             <ImageView
                 android:src="@drawable/ic_baseline_directions_bus_48"
                 android:background="@color/white"
@@ -50,30 +51,29 @@
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:src="@drawable/ic_baseline_directions_bus_48"
+                android:src="@drawable/ic_baseline_directions_car_48"
                 android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:src="@drawable/ic_baseline_directions_bus_48"
+                android:src="@drawable/ic_baseline_directions_bike_48"
                 android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:src="@drawable/ic_baseline_directions_bus_48"
+                android:src="@drawable/ic_baseline_rollerskates_48"
                 android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:src="@drawable/ic_baseline_directions_bus_48"
+                android:src="@drawable/ic_baseline_electric_scooter_48"
                 android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"/>
-
         </LinearLayout>
 
         <androidx.appcompat.widget.SearchView
@@ -82,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@color/white"
-            app:queryHint="Enter you destination..."
+            app:queryHint="Enter your destination..."
+            app:defaultQueryHint="Enter your destination..."
         />
     </LinearLayout>
 
