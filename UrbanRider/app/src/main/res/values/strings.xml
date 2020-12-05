@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UrbanRider</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="urban_rider">Urban Rider</string>
 </resources>
