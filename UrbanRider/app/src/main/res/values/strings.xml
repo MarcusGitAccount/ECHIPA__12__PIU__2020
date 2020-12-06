@@ -2,4 +2,22 @@
     <string name="app_name">UrbanRider</string>
     <string name="title_activity_maps">Map</string>
     <string name="urban_rider">Urban Rider</string>
+    <string name="title_activity_user_dashboard">UserDashboardActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_reviews">Reviews</string>
+    <string name="menu_notifications">Notifications</string>
+    <string name="menu_tickets">Tickets</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_challenges">Challenges</string>
+    <string name="menu_share_equipment">Share eco equipment</string>
+    <string name="menu_dashboard">Dashboard</string>
 </resources>
