@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/main_navigation_view_menu">
+        android:fitsSystemWindows="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,41 +24,52 @@
                 android:layout_height="0dp"
                 android:background="@color/urbanDarkGreen"
                 android:orientation="vertical"
-                app:layout_constraintHeight_percent="0.30"
+                app:layout_constraintHeight_percent="0.25"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/main_nav_drawer_profile_pic"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="25dp"
                     android:src="@mipmap/ic_profile_pic_round"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/main_nav_drawer_name"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ion_ionescu"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@id/main_nav_drawer_profile_pic"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/main_nav_drawer_profile_pic"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:background="@color/urbanViolet"
-                    android:text="Driver mode"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintLeft_toRightOf="@id/main_nav_drawer_profile_pic"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/main_nav_drawer_name" />
+                    <TextView
+                        android:id="@+id/main_nav_drawer_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ion_ionescu"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:background="@color/urbanViolet"
+                        android:text="Driver mode"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="@id/main_nav_drawer_name"
+                        app:layout_constraintEnd_toEndOf="@id/main_nav_drawer_name"
+                        app:layout_constraintTop_toBottomOf="@id/main_nav_drawer_name" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -69,12 +79,16 @@
                 android:background="@color/urbanDarkBlue"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintHeight_percent="0.75"
                 app:layout_constraintTop_toBottomOf="@id/main_nav_drawer_header">
-                <ListView
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/drawer_options_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
                     />
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

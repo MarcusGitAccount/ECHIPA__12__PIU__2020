@@ -6,6 +6,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -13,6 +15,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.piu.urbanrider.adapters.DrawerOptionAdapter
+import com.piu.urbanrider.models.DrawerOptions
 
 class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -20,6 +24,7 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var navigationDrawer: DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var drawerOptionAdapter: DrawerOptionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +35,20 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
 
-
         this.navigationDrawer = findViewById(R.id.drawer_layout)
-
         this.setupToolbar()
         this.setupToggle()
+        this.setupDrawerOptions()
+    }
+
+    private fun setupDrawerOptions() {
+        val drawerOptionsRecyclerRef = findViewById<RecyclerView>(R.id.drawer_options_rv)
+        this.drawerOptionAdapter = DrawerOptionAdapter(this@UserMapsActivity, DrawerOptions().getDrawerOptions())
+        drawerOptionsRecyclerRef.adapter = this.drawerOptionAdapter
+        drawerOptionsRecyclerRef.layoutManager = LinearLayoutManager(this)
     }
 
     private fun setupToolbar() {
-
         this.toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

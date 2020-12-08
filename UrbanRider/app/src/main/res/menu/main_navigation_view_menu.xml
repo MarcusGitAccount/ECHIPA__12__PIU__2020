@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="navigation_menu_reviews" android:title="@string/menu_reviews"/>
-    <item android:id="navigation_menu_notifications" android:title="@string/menu_notifications"/>
-    <item android:id="navigation_menu_tickets" android:title="@string/menu_tickets"/>
-    <item android:id="navigation_menu_settings" android:title="@string/menu_settings"/>
-    <item android:id="navigation_menu_challenges" android:title="@string/menu_challenges"/>
-    <item android:id="navigation_menu_share_eco_equipment" android:title="@string/menu_share_eco_equipment"/>
-</menu>
