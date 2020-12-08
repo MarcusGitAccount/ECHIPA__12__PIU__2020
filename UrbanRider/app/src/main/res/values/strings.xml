@@ -21,4 +21,6 @@
     <string name="menu_share_equipment">Share eco equipment</string>
     <string name="menu_dashboard">Dashboard</string>
     <string name="title_activity_user_maps">Map</string>
+
+    <string name="vertical_ellipsis">&#8942;</string>
 </resources>
