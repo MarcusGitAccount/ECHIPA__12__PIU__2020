@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main">
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UserMapsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:orientation="vertical">
 
+        <include layout="@layout/main_toolbar"/>
 
-        <fragment
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".UserDashboardActivity"
-            map:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+            android:layout_height="0dp"
+            map:layout_constraintTop_toBottomOf="@id/main_toolbar"
+            tools:context=".UserMapsActivity" />
 
         <LinearLayout
-            android:id="@+id/searchControlsLinearLayout"
+            android:id="@+id/search_controls_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,12 +34,15 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/transport_types_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:background="@color/urbanDarkGreen">
+                android:background="@color/urbanDarkGreen"
+                >
+
                 <ImageView
                     android:src="@drawable/ic_baseline_directions_bus_48"
                     android:background="@color/white"
@@ -84,6 +86,5 @@
                 />
         </LinearLayout>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
