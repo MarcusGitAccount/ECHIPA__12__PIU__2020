@@ -21,6 +21,9 @@
     <string name="menu_share_equipment">Share eco equipment</string>
     <string name="menu_dashboard">Dashboard</string>
     <string name="title_activity_user_maps">Map</string>
-
+    <string name="ion_ionescu">Ion Ionescu</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="menu_share_eco_equipment">Share eco equipment</string>
     <string name="vertical_ellipsis">&#8942;</string>
 </resources>
