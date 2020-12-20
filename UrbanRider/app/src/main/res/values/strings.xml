@@ -26,6 +26,8 @@
     <string name="close">Close</string>
     <string name="menu_share_eco_equipment">Share eco equipment</string>
     <string name="vertical_ellipsis">&#8942;</string>
+    <string name="string_ride_finished">Ride finished</string>
+    <string name="string_cancel">Cancel</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
