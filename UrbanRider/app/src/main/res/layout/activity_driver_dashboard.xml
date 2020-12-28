@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/urbanDarkBlue"
+    android:orientation="vertical"
+    tools:context=".DriverDashboard">
+
+    <include layout="@layout/main_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/urbanDarkGreen"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dashboard_profit_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Profit"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/dashboard_profit"
+                app:layout_constraintHorizontal_weight="0.5"
+                android:gravity="start"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:id="@+id/dashboard_profit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:padding="0dp"
+                android:text="1700RON"
+                android:background="@drawable/textview_rounded_corners"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintLeft_toRightOf="@id/dashboard_profit_label"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="10dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/urbanDarkGreen"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dashboard_ride_count_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Number of rides"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/dashboard_ride_count"
+                app:layout_constraintHorizontal_weight="0.5"
+                android:gravity="start"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:id="@+id/dashboard_ride_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:padding="0dp"
+                android:text="23"
+                android:background="@drawable/textview_rounded_corners"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintLeft_toRightOf="@id/dashboard_ride_count_label"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="10dp"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/urbanDarkGreen"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dashboard_review_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Review"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/dashboard_review"
+                app:layout_constraintHorizontal_weight="0.5"
+                android:gravity="start"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:id="@+id/dashboard_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:padding="0dp"
+                android:text="4.67"
+                android:background="@drawable/textview_rounded_corners"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintLeft_toRightOf="@id/dashboard_review_label"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="10dp"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/urbanDarkGreen"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dashboard_activate_btn_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Become active"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/dashboard_activate_btn"
+                app:layout_constraintHorizontal_weight="0.5"
+                android:gravity="start"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:id="@+id/dashboard_activate_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:padding="0dp"
+                android:text="ACTIVATE"
+                android:clickable="true"
+                android:textColor="@color/urbanLightGreen"
+                android:gravity="center"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintLeft_toRightOf="@id/dashboard_activate_btn_label"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="10dp"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/urbanDarkGreen"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dashboard_switch_btn_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Switch to normal mode"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/dashboard_switch_btn"
+                app:layout_constraintHorizontal_weight="0.5"
+                android:gravity="start"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:id="@+id/dashboard_switch_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:padding="0dp"
+                android:text="SWTICH"
+                android:clickable="true"
+                android:textColor="@color/urbanLightGreen"
+                android:gravity="center"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintLeft_toRightOf="@id/dashboard_switch_btn_label"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="10dp"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/urbanDarkGreen"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dashboard_start_btn_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Start driving"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/dashboard_start_btn"
+                app:layout_constraintHorizontal_weight="0.5"
+                android:gravity="start"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:id="@+id/dashboard_start_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:padding="0dp"
+                android:text="START"
+                android:clickable="true"
+                android:textColor="@color/urbanLightGreen"
+                android:gravity="center"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintLeft_toRightOf="@id/dashboard_start_btn_label"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="10dp"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
