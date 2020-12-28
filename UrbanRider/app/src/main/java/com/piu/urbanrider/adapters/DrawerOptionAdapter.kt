@@ -14,6 +14,7 @@ import com.piu.urbanrider.R
 import com.piu.urbanrider.TicketsActivity
 import com.piu.urbanrider.models.DrawerOption
 
+class DrawerOptionAdapter (private val context: Context, private val drawerOptions: ArrayList<DrawerOption>): RecyclerView.Adapter<DrawerOptionAdapter.DrawerOptionViewHolder>() {
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrawerOptionViewHolder {
