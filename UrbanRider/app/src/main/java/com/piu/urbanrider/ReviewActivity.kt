@@ -43,7 +43,7 @@ class ReviewActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        this.toolbar = findViewById(R.id.toolbar)
+        this.toolbar = findViewById(R.id.main_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
