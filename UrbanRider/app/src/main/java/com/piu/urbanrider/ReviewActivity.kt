@@ -68,7 +68,7 @@ class ReviewActivity : AppCompatActivity() {
         }
         this.submitButton.setOnClickListener {
             val intent = Intent(this@ReviewActivity, UserMapsActivity::class.java)
-            Toast.makeText(this@ReviewActivity, "Review submitted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@ReviewActivity, "Review submitted", Toast.LENGTH_LONG).show()
             startActivity(intent)
         }
     }

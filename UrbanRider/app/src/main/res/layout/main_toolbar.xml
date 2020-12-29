@@ -14,6 +14,7 @@
         app:title="@string/urban_rider"
         app:titleTextColor="@color/white"
     >
+
     </androidx.appcompat.widget.Toolbar>
 
 </LinearLayout>
