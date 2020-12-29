@@ -3,6 +3,7 @@ package com.piu.urbanrider
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.ActionBarOverlayLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -33,7 +34,6 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
 
         this.navigationDrawer = findViewById(R.id.drawer_layout)
         this.setupToolbar()
