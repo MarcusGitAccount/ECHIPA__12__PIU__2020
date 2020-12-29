@@ -41,4 +41,6 @@
     <string name="please_take_a_photo_or_upload_one">Please take a photo or upload one</string>
     <string name="take_photo">Take photo</string>
     <string name="upload_photo">Upload photo</string>
+    <string name="string_description_text">This is a text that suits a description</string>
+    <string name="string_order">order</string>
 </resources>
