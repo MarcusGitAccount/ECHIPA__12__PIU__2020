@@ -18,7 +18,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
     private var viewType : Int = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportResultViewHolder {
-        val view = inflater.inflate(viewType, parent, false)
+        val view = inflater.inflate(R.layout.layout_common_transport_result, parent, false)
         return TransportResultViewHolder(view)
     }
 
@@ -30,7 +30,24 @@ class TransportResultAdapter (private val context : Context, private val transpo
         holder.bindData(transportResults[position])
     }
 
+    override fun getItemId(position: Int) : Long {
+        return super.getItemId(position)
+    }
+
+    fun addItem(index : Int, transportResult : TransportResult) {
+        transportResults.add(index, transportResult)
+    }
+
+    fun removeItemAt(index: Int) {
+        transportResults.removeAt(index)
+    }
+
+    fun clearItems() {
+        transportResults.clear()
+    }
+
     inner class TransportResultViewHolder(private var view : View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+
         private lateinit var transportResultTitle : TextView
         private lateinit var transportResultDescription : TextView
         private lateinit var transportResultImage : ImageView
@@ -55,7 +72,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
             transportResultTitle.text = data.title
             transportResultDescription.text = data.description
             transportResultImage.setImageResource(data.image)
-            transportResultOrder.text = R.string.string_order.toString();
+            transportResultOrder.setText(R.string.string_order)
         }
     }
 }
