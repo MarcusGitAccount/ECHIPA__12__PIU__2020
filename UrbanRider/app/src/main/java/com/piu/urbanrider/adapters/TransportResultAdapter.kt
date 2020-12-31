@@ -1,11 +1,13 @@
 package com.piu.urbanrider.adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.R
 import com.piu.urbanrider.models.TransportResult
@@ -15,10 +17,10 @@ import kotlinx.android.synthetic.main.layout_common_transport_result.*
 class TransportResultAdapter (private val context : Context, private val transportResults : ArrayList<TransportResult>) : RecyclerView.Adapter<TransportResultAdapter.TransportResultViewHolder>() {
 
     private val inflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    private var viewType : Int = 1
+    private var viewType : Int = R.layout.layout_common_transport_result
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportResultViewHolder {
-        val view = inflater.inflate(R.layout.layout_common_transport_result, parent, false)
+        val view = inflater.inflate(this.viewType, parent, false)
         return TransportResultViewHolder(view)
     }
 
@@ -52,6 +54,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         private lateinit var transportResultDescription : TextView
         private lateinit var transportResultImage : ImageView
         private lateinit var transportResultOrder : TextView
+        private lateinit var transportResultCheckOcc : TextView
         private var data : TransportResult? = null
         private var pushState : Int = 0
 
@@ -60,6 +63,17 @@ class TransportResultAdapter (private val context : Context, private val transpo
             transportResultDescription = view.findViewById(R.id.layout_transport_result_description)
             transportResultImage = view.findViewById(R.id.layout_transport_result_image)
             transportResultOrder = view.findViewById(R.id.layout_transport_result_order)
+
+            when (viewType) {
+                R.layout.layout_common_transport_result -> {
+                    transportResultCheckOcc = view.findViewById(R.id.layout_transport_result_checkocc)
+                    transportResultOrder.setOnClickListener({
+                        //val builder = AlertDialog.Builder(this)
+                        //builder.se
+                    })
+                }
+            }
+
             view.setOnClickListener(this)
         }
 
@@ -68,6 +82,12 @@ class TransportResultAdapter (private val context : Context, private val transpo
 
         fun bindData(data : TransportResult) {
             this.data = data
+
+            when (viewType) {
+                R.layout.layout_common_transport_result -> {
+                    transportResultCheckOcc.setText(R.string.string_checkocc)
+                }
+            }
 
             transportResultTitle.text = data.title
             transportResultDescription.text = data.description

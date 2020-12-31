@@ -19,7 +19,7 @@ class TransportResultsActivity : AppCompatActivity() {
 
         transportResultRecyclerView = findViewById(R.id.recycler_view_transport_results)
 
-        transportResultAdapter = TransportResultAdapter(this@TransportResultsActivity, TransportResults().getTestTransportResults("Car"))
+        transportResultAdapter = TransportResultAdapter(this@TransportResultsActivity, TransportResults().getTestTransportResults("Bus"))
         transportResultRecyclerView.adapter = transportResultAdapter
 
         val linearLayoutManager = LinearLayoutManager(this)

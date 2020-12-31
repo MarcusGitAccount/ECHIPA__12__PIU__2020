@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/urbanDarkGreen"
-    android:padding="15dp"
+    android:paddingTop="15dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
     android:layout_margin="5dp"
     >
 
@@ -15,8 +17,8 @@
         android:layout_height="200px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_baseline_directions_bus_48"
-        />
+        android:src="@drawable/ic_baseline_directions_car_48"
+    />
 
     <TextView
         android:id="@+id/layout_transport_result_title"
@@ -31,7 +33,7 @@
         android:text="@string/ion_ionescu"
         android:textSize="22sp"
         android:textColor="@color/white"
-        />
+    />
 
     <TextView
         android:id="@+id/layout_transport_result_description"
@@ -43,8 +45,7 @@
         android:text="@string/string_description_text"
         android:textColor="@color/white"
         android:textSize="14sp"
-        android:textAlignment="textStart"
-        />
+    />
 
     <TextView
         android:id="@+id/layout_transport_result_order"
@@ -53,21 +54,6 @@
         app:layout_constraintTop_toBottomOf="@id/layout_transport_result_description"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/string_order"
-        android:textColor="@color/urbanLightGreen"
-        android:textAllCaps="true"
-        android:background="@color/urbanDarkGreen"
-        android:shadowColor="@color/urbanLightGreen"
-        android:paddingHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        />
-
-    <TextView
-        android:id="@+id/layout_transport_result_checkocc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/layout_transport_result_description"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/string_checkocc"
         android:textColor="@color/urbanLightGreen"
         android:textAllCaps="true"
         android:background="@color/urbanDarkGreen"

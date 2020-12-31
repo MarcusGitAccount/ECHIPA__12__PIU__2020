@@ -43,4 +43,5 @@
     <string name="upload_photo">Upload photo</string>
     <string name="string_description_text">This is a text that suits a description</string>
     <string name="string_order">order</string>
+    <string name="string_checkocc">check occupancy</string>
 </resources>
