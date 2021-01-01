@@ -44,4 +44,7 @@
     <string name="string_description_text">This is a text that suits a description</string>
     <string name="string_order">order</string>
     <string name="string_checkocc">check occupancy</string>
+    <string name="string_ticket_notification">Ticket notification</string>
+    <string name="string_ok">OK</string>
+    <string name="string_dismiss">DISMISS</string>
 </resources>
