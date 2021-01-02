@@ -5,6 +5,7 @@ class Notification (var id:Int, var title:String, var infos:String, var icon: In
     enum class NotificationType {
         NEW_RIDE_REQUEST,
         RIDE_FINISHED,
+        RIDE_PAYMENT
     }
 
 }

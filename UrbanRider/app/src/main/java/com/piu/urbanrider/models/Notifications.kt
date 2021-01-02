@@ -39,6 +39,16 @@ class Notifications {
                 Notification.NotificationType.NEW_RIDE_REQUEST
             )
         )
+        list.add(
+            Notification(
+                4,
+                "Ride payment needed",
+                "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium dolorem..",
+                R.drawable.ic_option_baseline_star_border_24,
+                Notification.NotificationType.RIDE_PAYMENT
+            )
+        )
+
         return list
     }
     fun getNotifications():ArrayList<Notification>{
