@@ -9,4 +9,8 @@
         <item name="boxStrokeWidth">2dp</item>
     </style>
 
+    <style name="ModalTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/urbanModalBackground</item>
+    </style>
+
 </resources>
