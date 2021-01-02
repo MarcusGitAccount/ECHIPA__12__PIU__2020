@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.DrivingInterface
 import com.piu.urbanrider.R
+import com.piu.urbanrider.RidePayment
 import com.piu.urbanrider.models.Notification
 
 class NotificationAdapter(
@@ -97,6 +98,12 @@ class NotificationAdapter(
                     }
 
                 dialog.show()
+            }
+            else if (data?.type?.equals(Notification.NotificationType.RIDE_PAYMENT)!!) {
+                val intent = Intent(view.context, RidePayment::class.java)
+
+                startActivity(view.context, intent, null)
+                removeNotification(data!!)
             }
 
         }
