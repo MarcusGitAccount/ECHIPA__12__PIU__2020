@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/urbanDarkGreen"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_margin="5dp"
+        android:text="Dialog title"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:letterSpacing="0.09"
+        android:textColor="@color/white"
+        />
+
+    <View
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height= "1dp"
+        android:background="@color/urbanLightGreen" />
+
+    <TextView
+        android:id="@+id/dialog_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Dialog text 2"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        />
+
+
+    <Button
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:id="@+id/main_modal_btn_dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/urbanLightGreen"
+        android:text="DISMISS"
+        android:textColor="@android:color/white" />
+
+
+
+</LinearLayout>
