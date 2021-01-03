@@ -3,6 +3,7 @@ package com.piu.urbanrider
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
@@ -11,6 +12,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.ActionBarOverlayLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -66,6 +68,7 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_drawer_toggle)
     }
 
     private fun setupToggle() {

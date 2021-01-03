@@ -15,6 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TransportResultsActivity"></activity>
+        <activity android:name=".UploadPhotoActivity" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
         <activity android:name=".RidePayment"/>
         <activity android:name=".DrivingInterface"/>
         <activity android:name=".UploadPhotoActivity" />
@@ -37,7 +42,8 @@
         <activity
             android:name=".UserMapsActivity"
             android:label="@string/title_activity_user_dashboard"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".MainActivity" />
 
         <activity android:name=".NotificationDriverActivity">
