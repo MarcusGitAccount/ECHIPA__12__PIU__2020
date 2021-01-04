@@ -9,6 +9,7 @@ import com.piu.urbanrider.models.Notifications
 
 class NotificationDriverActivity : AppCompatActivity() {
     var notificationAdapter:NotificationAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.notifications_list)
@@ -17,6 +18,5 @@ class NotificationDriverActivity : AppCompatActivity() {
         recyclerRef.adapter = notificationAdapter
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerRef.layoutManager = linearLayoutManager
-
     }
 }

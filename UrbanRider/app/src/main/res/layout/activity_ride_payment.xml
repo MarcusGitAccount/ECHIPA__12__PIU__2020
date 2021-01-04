@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserMapsActivity">
+    android:background="@color/urbanDarkBlue"
+    tools:context=".RidePayment">
 
     <include
-        android:id="@+id/toolbar_layout"
-        layout="@layout/main_toolbar" />
+        android:id="@+id/toolbar"
+        layout="@layout/main_toolbar"/>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -22,78 +23,120 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                map:layout_constraintTop_toTopOf="parent"
-                tools:context=".UserMapsActivity" />
-
             <LinearLayout
-                android:id="@+id/search_controls_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/urbanViolet"
-                android:gravity="center"
+                android:id="@+id/ride_payment_card_details"
+                android:layout_marginTop="50dp"
+                android:layout_marginHorizontal="10dp"
+                app:layout_constraintTop_toTopOf="parent"
                 android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:background="@color/urbanDarkGreen"
                 android:padding="10dp"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/transport_types_layout"
+                <TextView
+                    android:id="@+id/ride_payment_card_ride_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:background="@color/urbanDarkGreen"
-                    android:orientation="horizontal">
+                    android:text="Ride sharing with Gigel A."
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:letterSpacing="0.03"
+                    />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@color/white"
-                        android:src="@drawable/ic_baseline_directions_bus_48" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@color/white"
-                        android:src="@drawable/ic_baseline_directions_car_48" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@color/white"
-                        android:src="@drawable/ic_baseline_directions_bike_48" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@color/white"
-                        android:src="@drawable/ic_baseline_rollerskates_48" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@color/white"
-                        android:src="@drawable/ic_baseline_electric_scooter_48" />
-                </LinearLayout>
-
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/destinationSearchView"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/ride_payment_card_ride_timestamp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/white"
-                    app:defaultQueryHint="Enter your destination..."
-                    app:queryHint="Enter your destination..." />
+                    android:text="25-October-2020 23:54"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:letterSpacing="0.03"
+                    />
+
+                <TextView
+                    android:id="@+id/ride_payment_card_ride_view_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:padding="0dp"
+                    android:text="VIEW RIDE"
+                    android:clickable="true"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+
+                    />
+
             </LinearLayout>
+
+            <RadioGroup
+                app:layout_constraintTop_toBottomOf="@id/ride_payment_card_details"
+                app:layout_constraintBottom_toBottomOf="@id/ride_payment_card_details_proceed_btn"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/ride_payment_card_details_checkbox_tokens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="85 TOKENS"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/urbanLightGreen"
+                    android:checked="true"
+                    android:onClick="onRadioButtonClicked"/>
+        <!--
+                    android:drawableLeft="Use this for icons"
+        -->
+                <RadioButton
+                    android:id="@+id/ride_payment_card_details_checkbox_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17.25 RON"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/urbanLightGreen"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/ride_payment_card_details_proceed_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ride_payment_card_details_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="PROCEED"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:minWidth="150dp"
+                android:background="@color/urbanDarkGreen"
+                />
+
+            <Switch
+                android:id="@+id/ride_payment_card_details_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember payment mode"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:thumbTint="@color/urbanLightGreen"
+                android:trackTint="@color/grey"
+                android:checked="false"
+                android:layout_marginBottom="50dp"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,9 +1,18 @@
 package com.piu.urbanrider
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.ActionBarOverlayLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,8 +26,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
+import com.piu.urbanrider.models.MainModalData
 
 class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    companion object {
+        const val INTENT_EXTRA_NOTIFICATION: String = "notification"
+    }
 
     private lateinit var mMap: GoogleMap
     private lateinit var navigationDrawer: DrawerLayout
@@ -34,11 +48,12 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-
         this.navigationDrawer = findViewById(R.id.drawer_layout)
         this.setupToolbar()
         this.setupToggle()
         this.setupDrawerOptions()
+
+        this.setupStartModal()
     }
 
     private fun setupDrawerOptions() {
@@ -53,6 +68,7 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_drawer_toggle)
     }
 
     private fun setupToggle() {
@@ -81,5 +97,27 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
+
+    @SuppressLint("InflateParams")
+    fun setupStartModal() {
+        if (intent.extras != null) {
+            // if null it will return
+            val data = intent.getParcelableExtra<MainModalData>(INTENT_EXTRA_NOTIFICATION) ?: return
+            val builder = AlertDialog.Builder(this, R.style.ModalTheme)
+            val builderView = LayoutInflater.from(this).inflate(R.layout.main_modal_layout, null)
+
+            builder.setView(builderView)
+
+            val dialog = builder.create()
+
+            builderView.findViewById<TextView>(R.id.dialog_title).text = data.title
+            builderView.findViewById<TextView>(R.id.dialog_text2).text = data.content
+            builderView.findViewById<Button>(R.id.main_modal_btn_dismiss).setOnClickListener() {
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
     }
 }

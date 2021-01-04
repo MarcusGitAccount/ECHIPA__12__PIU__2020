@@ -10,5 +10,6 @@
     <color name="urbanDarkGreen">#39817e</color>
     <color name="urbanLightGreen">#79a252</color>
     <color name="urbanDarkBlue">#335175</color>
+    <color name="urbanModalBackground">#828F9F</color>
 
 </resources>
