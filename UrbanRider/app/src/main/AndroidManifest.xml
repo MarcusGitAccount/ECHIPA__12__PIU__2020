@@ -17,12 +17,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TransportResultsActivity"></activity>
         <activity android:name=".UploadPhotoActivity" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
         <activity android:name=".RidePayment"/>
         <activity android:name=".DrivingInterface"/>
-        <activity android:name=".UploadPhotoActivity" />
         <activity android:name=".ReviewActivity" />
         <activity android:name=".TicketsActivity" />
         <activity android:name=".DriverDashboard" />
@@ -45,7 +41,6 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".MainActivity" />
-
         <activity android:name=".NotificationDriverActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
