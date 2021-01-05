@@ -37,6 +37,12 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="filters">Filters</string>
+    <string name="shoes_number">Shoes number:</string>
+    <string name="wheels_type">Wheels type:</string>
+    <string name="linear">Linear</string>
+    <string name="parallel">Parallel</string>
+    <string name="number_of_wheels">Number of wheels:</string>
     <string name="you_ve_just_ended_the_trip">You\'ve just ended the trip !</string>
     <string name="please_take_a_photo_or_upload_one">Please take a photo or upload one</string>
     <string name="take_photo">Take photo</string>
@@ -47,4 +53,33 @@
     <string name="string_ticket_notification">Ticket notification</string>
     <string name="string_ok">OK</string>
     <string name="string_dismiss">DISMISS</string>
+    <string-array name="number_of_seats">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="height_intervals">
+        <item>150cm - 160cm</item>
+        <item>160cm - 170cm</item>
+        <item>170cm - 180cm</item>
+        <item>180cm +</item>
+    </string-array>
+    <string-array name="battery_life">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="shoes_number">
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+    </string-array>
+
 </resources>
