@@ -47,4 +47,5 @@
     <string name="string_ticket_notification">Ticket notification</string>
     <string name="string_ok">OK</string>
     <string name="string_dismiss">DISMISS</string>
+    <string name="string_ticket_order_body">Your ticket has been ordered! Please check the ticket section for information.</string>
 </resources>
