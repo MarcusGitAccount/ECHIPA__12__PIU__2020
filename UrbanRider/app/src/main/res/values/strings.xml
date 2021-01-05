@@ -37,13 +37,22 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-<<<<<<< HEAD
     <string name="filters">Filters</string>
     <string name="shoes_number">Shoes number:</string>
     <string name="wheels_type">Wheels type:</string>
     <string name="linear">Linear</string>
     <string name="parallel">Parallel</string>
     <string name="number_of_wheels">Number of wheels:</string>
+    <string name="you_ve_just_ended_the_trip">You\'ve just ended the trip !</string>
+    <string name="please_take_a_photo_or_upload_one">Please take a photo or upload one</string>
+    <string name="take_photo">Take photo</string>
+    <string name="upload_photo">Upload photo</string>
+    <string name="string_description_text">This is a text that suits a description</string>
+    <string name="string_order">order</string>
+    <string name="string_checkocc">check occupancy</string>
+    <string name="string_ticket_notification">Ticket notification</string>
+    <string name="string_ok">OK</string>
+    <string name="string_dismiss">DISMISS</string>
     <string-array name="number_of_seats">
         <item>3</item>
         <item>4</item>
