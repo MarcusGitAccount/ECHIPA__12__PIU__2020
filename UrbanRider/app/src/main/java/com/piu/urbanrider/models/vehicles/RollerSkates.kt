@@ -1,6 +1,7 @@
 package com.piu.urbanrider.models.vehicles
 
 import com.piu.urbanrider.R
+import com.piu.urbanrider.models.TransportResult
 
 class RollerSkates {
     private lateinit var rollerSkatesList: ArrayList<RollerSkater>
@@ -82,5 +83,14 @@ class RollerSkates {
         val resultFilterNumber =
             if (options.containsKey("number")) resultFilterType.filter { it.nr_wheels == options["number"]?.toInt() } else resultFilterType
         return resultFilterNumber.filter { it.protection == options["protection"] }
+    }
+
+    fun transform(result:List<RollerSkater>):ArrayList<TransportResult>{
+        val list = ArrayList<TransportResult>()
+        for (item in result)
+        {
+            list.add(TransportResult(item.id, "RollerSkater", item.productName, item.owner + " " + item.price + " " + item.currency, item.image ))
+        }
+        return list
     }
 }

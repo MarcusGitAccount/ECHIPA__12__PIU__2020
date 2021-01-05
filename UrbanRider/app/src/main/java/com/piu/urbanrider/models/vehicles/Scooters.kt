@@ -1,6 +1,7 @@
 package com.piu.urbanrider.models.vehicles
 
 import com.piu.urbanrider.R
+import com.piu.urbanrider.models.TransportResult
 
 class Scooters {
 
@@ -78,5 +79,14 @@ class Scooters {
         return scootersList.filter { it.acceptedHeight == options["height"] }
             .filter { it.batteryLife == options["battery"]?.toInt() }
             .filter{ it.protection == options["protection"]}
+    }
+
+    fun transform(result:List<Scooter>):ArrayList<TransportResult>{
+        val list = ArrayList<TransportResult>()
+        for (item in result)
+        {
+            list.add(TransportResult(item.id, "Bike", item.scooterBrand, item.owner + " " + item.price + " " + item.currency, item.image ))
+        }
+        return list
     }
 }

@@ -1,6 +1,7 @@
 package com.piu.urbanrider.models.vehicles
 
 import com.piu.urbanrider.R
+import com.piu.urbanrider.models.TransportResult
 
 class Bikes {
 
@@ -58,6 +59,15 @@ class Bikes {
 
     fun getBikes(option: Int): List<Bike> {
         return bikesList.filter { it.bikeType == option }
+    }
+
+    fun transform(result:List<Bike>):ArrayList<TransportResult>{
+        val list = ArrayList<TransportResult>()
+        for (item in result)
+        {
+            list.add(TransportResult(item.id, "Bike", item.bikeBrand, item.owner + " " + item.price + " " + item.currency, item.image ))
+        }
+        return list
     }
 
 }
