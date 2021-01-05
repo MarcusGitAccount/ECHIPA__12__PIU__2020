@@ -57,7 +57,7 @@ class DrawerOptionAdapter (private val context: Context, private val drawerOptio
                 1 -> {
                     val intent = Intent(context, NotificationDriverActivity::class.java)
                     ContextCompat.startActivity(context, intent, null)
-                    
+
                 }
                 2 -> {
                     val intent = Intent(context, TicketsActivity::class.java)
