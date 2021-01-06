@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.ActionBarOverlayLayout
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
@@ -45,11 +47,14 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var toolbar: Toolbar
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerOptionAdapter: DrawerOptionAdapter
+    private lateinit var searchView: SearchView
     private lateinit var choiceBusImageView: ImageView
     private lateinit var choiceCarImageView: ImageView
     private lateinit var choiceBikeImageView: ImageView
     private lateinit var choiceRollerskatesImageView: ImageView
     private lateinit var choiceEscooterImageView: ImageView
+
+    private var validInput : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +69,7 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         this.setupToggle()
         this.setupDrawerOptions()
         this.setupTransportChoiceButtons()
+        this.setupSearch()
         this.setupStartModal()
     }
 
@@ -101,20 +107,41 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         this.choiceCarImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, CarActivity::class.java)
-            startActivity(intent)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
         })
         this.choiceBikeImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, BikeActivity::class.java)
-            startActivity(intent)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
         })
         this.choiceRollerskatesImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, RollerActivity::class.java)
-            startActivity(intent)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
         })
         this.choiceEscooterImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, ScooterActivity::class.java)
-            startActivity(intent)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
         })
+    }
+
+    private fun setupSearch() {
+        this.searchView = findViewById(R.id.destinationSearchView)
+        this.searchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {return true}
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (searchView.query.toString().equals(""))
+                    validInput = false
+                else
+                    validInput = true
+                return true
+            }
+        })
+    }
+
+    private fun checkAndStartActivity(intent: Intent, message: String) {
+        if (this.validInput)
+            startActivity(intent)
+        else
+            Toast.makeText(this@UserMapsActivity, message, Toast.LENGTH_LONG).show()
     }
 
     /**
