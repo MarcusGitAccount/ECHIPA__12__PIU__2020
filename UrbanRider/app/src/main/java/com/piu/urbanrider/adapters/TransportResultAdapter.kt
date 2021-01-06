@@ -1,10 +1,12 @@
 package com.piu.urbanrider.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -49,6 +51,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         transportResults.clear()
     }
 
+    @SuppressLint("SetTextI18n")
     inner class TransportResultViewHolder(private var view : View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private lateinit var transportResultTitle : TextView
@@ -59,6 +62,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         private var data : TransportResult? = null
         private var pushState : Int = 0
 
+
         init {
             transportResultTitle = view.findViewById(R.id.layout_transport_result_title)
             transportResultDescription = view.findViewById(R.id.layout_transport_result_description)
@@ -68,14 +72,14 @@ class TransportResultAdapter (private val context : Context, private val transpo
             when (viewType) {
                 R.layout.layout_common_transport_result -> {
                     transportResultCheckOcc = view.findViewById(R.id.layout_transport_result_checkocc)
-                    transportResultOrder.setOnClickListener({
+                    transportResultOrder.setOnClickListener {
                         val builder = AlertDialog.Builder(context, R.style.MyDialogTheme)
 
                         val ticketAlert : AlertDialog = builder.setTitle(R.string.string_ticket_notification)
-                                .setPositiveButton(context.getString(R.string.string_dismiss), { ticketAlert, which -> ticketAlert.dismiss()})
-                                .setMessage("Placed order for the selected line! Please check Tickets panel.")
-                                .setCancelable(false)
-                                .create()
+                            .setPositiveButton(context.getString(R.string.string_dismiss), { ticketAlert, which -> ticketAlert.dismiss()})
+                            .setMessage("Placed order for the selected line! Please check Tickets panel.")
+                            .setCancelable(false)
+                            .create()
 
                         ticketAlert.show()
 
@@ -84,7 +88,29 @@ class TransportResultAdapter (private val context : Context, private val transpo
                         ticketAlert.getButton(AlertDialog.BUTTON_POSITIVE).setPadding(2, 0, 2, 0)
                         ticketAlert.setIcon(R.drawable.ic_option_baseline_ticket_24)
 
-                    })
+                    }
+
+                    transportResultCheckOcc.setOnClickListener() {
+                        val builder = AlertDialog.Builder(view.context, R.style.ModalTheme)
+                        val builderView = LayoutInflater.from(view.context).inflate(R.layout.occ_modal_layout, null)
+
+                        builder.setView(builderView)
+
+                        val dialog = builder.create()
+
+                        builderView.findViewById<TextView>(R.id.dialog_title).text = "Occupancy data for selected ride"
+                        builderView.findViewById<TextView>(R.id.dialog_text1).text =
+                            "Our approximations indicate a level of ${(30..60).random().toString()}% occupancy"
+                        builderView.findViewById<TextView>(R.id.dialog_text2).text = "You will experience slight discomfort"
+
+                        builderView.findViewById<Button>(R.id.modal_btn_dismiss).setOnClickListener() {
+                            dialog.dismiss()
+                        }
+                        builderView.findViewById<Button>(R.id.modal_btn_accept).setOnClickListener() {
+                            dialog.dismiss()
+                        }
+                        dialog.show()
+                    }
                 }
             }
 

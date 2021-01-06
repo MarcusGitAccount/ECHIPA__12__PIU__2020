@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.piu.urbanrider.DriverDashboard
 import com.piu.urbanrider.NotificationDriverActivity
 import com.piu.urbanrider.R
 import com.piu.urbanrider.TicketsActivity
@@ -60,6 +61,10 @@ class DrawerOptionAdapter (private val context: Context, private val drawerOptio
                 }
                 2 -> {
                     val intent = Intent(context, TicketsActivity::class.java)
+                    ContextCompat.startActivity(context, intent, null)
+                }
+                6 -> {
+                    val intent = Intent(context, DriverDashboard::class.java)
                     ContextCompat.startActivity(context, intent, null)
                 }
             }
