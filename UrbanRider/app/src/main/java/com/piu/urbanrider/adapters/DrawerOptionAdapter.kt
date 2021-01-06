@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.NotificationDriverActivity
 import com.piu.urbanrider.R
 import com.piu.urbanrider.TicketsActivity
+import com.piu.urbanrider.UserMapsActivity
 import com.piu.urbanrider.models.DrawerOption
 
 class DrawerOptionAdapter (private val context: Context, private val drawerOptions: ArrayList<DrawerOption>): RecyclerView.Adapter<DrawerOptionAdapter.DrawerOptionViewHolder>() {
@@ -61,6 +62,10 @@ class DrawerOptionAdapter (private val context: Context, private val drawerOptio
                 }
                 2 -> {
                     val intent = Intent(context, TicketsActivity::class.java)
+                    ContextCompat.startActivity(context, intent, null)
+                }
+                6 -> {
+                    val intent = Intent(context, UserMapsActivity::class.java)
                     ContextCompat.startActivity(context, intent, null)
                 }
             }
