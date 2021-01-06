@@ -1,11 +1,13 @@
 package com.piu.urbanrider
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -27,6 +29,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.MainModalData
+import com.piu.urbanrider.vehicles.activities.BikeActivity
+import com.piu.urbanrider.vehicles.activities.CarActivity
+import com.piu.urbanrider.vehicles.activities.RollerActivity
+import com.piu.urbanrider.vehicles.activities.ScooterActivity
 
 class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -39,6 +45,11 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var toolbar: Toolbar
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerOptionAdapter: DrawerOptionAdapter
+    private lateinit var choiceBusImageView: ImageView
+    private lateinit var choiceCarImageView: ImageView
+    private lateinit var choiceBikeImageView: ImageView
+    private lateinit var choiceRollerskatesImageView: ImageView
+    private lateinit var choiceEscooterImageView: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +63,7 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         this.setupToolbar()
         this.setupToggle()
         this.setupDrawerOptions()
-
+        this.setupTransportChoiceButtons()
         this.setupStartModal()
     }
 
@@ -79,6 +90,31 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             R.string.open,
             R.string.close
         )
+    }
+
+    private fun setupTransportChoiceButtons() {
+        this.choiceBusImageView = findViewById(R.id.choice_bus)
+        this.choiceCarImageView = findViewById(R.id.choice_car)
+        this.choiceBikeImageView = findViewById(R.id.choice_bike)
+        this.choiceRollerskatesImageView = findViewById(R.id.choice_rollerskates)
+        this.choiceEscooterImageView = findViewById(R.id.choice_escooter)
+
+        this.choiceCarImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, CarActivity::class.java)
+            startActivity(intent)
+        })
+        this.choiceBikeImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, BikeActivity::class.java)
+            startActivity(intent)
+        })
+        this.choiceRollerskatesImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, RollerActivity::class.java)
+            startActivity(intent)
+        })
+        this.choiceEscooterImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, ScooterActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     /**

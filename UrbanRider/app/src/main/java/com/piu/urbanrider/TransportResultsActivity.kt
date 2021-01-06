@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import com.piu.urbanrider.adapters.DrawerOptionAdapter
+import com.piu.urbanrider.models.DrawerOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.adapters.TransportResultAdapter
-import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.TransportResult
 import com.piu.urbanrider.models.TransportResults
 
