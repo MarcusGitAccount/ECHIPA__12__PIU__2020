@@ -224,7 +224,7 @@ class RollerManageActivity : AppCompatActivity() {
     }
 
     private fun deleteRoller(id: Int) {
-        RollerSkates.instance.deleteRollerSkater(:wqid)
+        RollerSkates.instance.deleteRollerSkater(id)
         finish()
     }
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.SearchView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -30,6 +31,12 @@ class BikeActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var toolbar: Toolbar
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerOptionAdapter: DrawerOptionAdapter
+    private lateinit var destinationSearchView: SearchView
+    private lateinit var sourceSearchView: SearchView
+
+    private lateinit var destinationString: String
+    private lateinit var destinationLocation: LatLng
+    private lateinit var sourceLocation: LatLng
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,14 @@ class BikeActivity : AppCompatActivity(), OnMapReadyCallback {
         this.setupToolbar()
         this.setupToggle()
         this.setupDrawerOptions()
+
+        this.sourceSearchView = findViewById(R.id.current_location_sv)
+        this.destinationSearchView = findViewById(R.id.destination_sv)
+
+        this.destinationString = intent.getStringExtra("destinationString").toString()
+
+        this.sourceSearchView.setQuery("Current location", false)
+        this.destinationSearchView.setQuery(this.destinationString, false)
 
         val radioGroup_protection_equipment = findViewById<RadioGroup>(R.id.bike_rg)
         radioGroup_protection_equipment.setOnCheckedChangeListener(
@@ -109,11 +124,18 @@ class BikeActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
+        this.destinationLocation = LatLng(intent.getDoubleExtra("destinationLocationLat", 0.0), intent.getDoubleExtra("destinationLocationLong", 0.0))
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.addMarker(MarkerOptions().position(this.destinationLocation).title("Marker"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(this.destinationLocation))
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng(
+                    this.destinationLocation.latitude,
+                    this.destinationLocation.longitude
+                ), 16.0f
+            )
+        )
     }
 }

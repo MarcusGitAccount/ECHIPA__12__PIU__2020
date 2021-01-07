@@ -8,17 +8,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:background="@color/urbanDarkBlue">
         <include
             android:id="@+id/toolbar_layout"
             layout="@layout/main_toolbar"/>
-
         <TextView
             android:id="@id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notification"
+            android:text="Challenges"
             android:textStyle="bold"
             android:background="@color/urbanDarkBlue"
             android:textColor="@color/white"
@@ -29,6 +28,7 @@
             android:id="@+id/notification_rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/urbanDarkBlue"

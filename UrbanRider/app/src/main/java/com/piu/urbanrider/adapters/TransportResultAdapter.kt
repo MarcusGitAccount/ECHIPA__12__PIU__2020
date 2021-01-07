@@ -1,14 +1,17 @@
 package com.piu.urbanrider.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.R
 import com.piu.urbanrider.models.TransportResult
@@ -49,6 +52,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         transportResults.clear()
     }
 
+    @SuppressLint("SetTextI18n")
     inner class TransportResultViewHolder(private var view : View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private lateinit var transportResultTitle : TextView
@@ -58,6 +62,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         private lateinit var transportResultCheckOcc : TextView
         private var data : TransportResult? = null
         private var pushState : Int = 0
+
 
         init {
             transportResultTitle = view.findViewById(R.id.layout_transport_result_title)
@@ -69,21 +74,19 @@ class TransportResultAdapter (private val context : Context, private val transpo
                 R.layout.layout_common_transport_result -> {
                     transportResultCheckOcc = view.findViewById(R.id.layout_transport_result_checkocc)
                     transportResultOrder.setOnClickListener({
-                        val builder = AlertDialog.Builder(context, R.style.MyDialogTheme)
+                        val builder = AlertDialog.Builder(view?.context!!, R.style.ModalTheme)
+                        val builderView = LayoutInflater.from(view.context).inflate(R.layout.modal_layout_alt, null)
 
-                        val ticketAlert : AlertDialog = builder.setTitle(R.string.string_ticket_notification)
-                                .setPositiveButton(context.getString(R.string.string_dismiss), { ticketAlert, which -> ticketAlert.dismiss()})
-                                .setMessage("Placed order for the selected line! Please check Tickets panel.")
-                                .setCancelable(false)
-                                .create()
+                        builder.setView(builderView)
+                        builderView.findViewById<TextView>(R.id.dialog_title).setText(R.string.string_ticket_notification)
+                        builderView.findViewById<TextView>(R.id.dialog_text1).setText(R.string.string_ticket_order_body)
+                        builderView.findViewById<TextView>(R.id.dialog_text2).isVisible = false
 
-                        ticketAlert.show()
-
-                        ticketAlert.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundResource(R.color.urbanLightGreen)
-                        ticketAlert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(context.resources.getColor(R.color.white))
-                        ticketAlert.getButton(AlertDialog.BUTTON_POSITIVE).setPadding(2, 0, 2, 0)
-                        ticketAlert.setIcon(R.drawable.ic_option_baseline_ticket_24)
-
+                        val dialog = builder.create()
+                        val okButton = builderView.findViewById<Button>(R.id.modal_btn_ok).setOnClickListener() {
+                            dialog.dismiss()
+                        }
+                        dialog.show()
                     })
                 }
             }

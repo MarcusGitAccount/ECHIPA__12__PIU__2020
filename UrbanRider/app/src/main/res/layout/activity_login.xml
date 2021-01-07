@@ -16,17 +16,17 @@
         android:paddingBottom="20dp"
         android:backgroundTint="@color/white"
         android:id="@+id/username"
-        android:layout_width="0dp"
+        android:minWidth="380dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="96dp"
-        android:layout_marginEnd="24dp"
         android:autofillHints="@string/prompt_email"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +46,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:selectAllOnFocus="true"
+        android:nextFocusDown="@id/login_btn"
         app:layout_constraintEnd_toEndOf="@id/username"
         app:layout_constraintStart_toStartOf="@id/username"
         app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -69,9 +70,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
         android:background="@drawable/btn_round_corners"
         android:padding="5dp"
@@ -84,31 +83,48 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
+        android:id="@+id/login_error_view"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invalid password"
+        android:textSize="20dp"
+        android:textColor="@color/urbanViolet"
+        app:layout_constraintStart_toStartOf="@id/login_btn"
+        app:layout_constraintEnd_toEndOf="@id/login_btn"
+        app:layout_constraintTop_toBottomOf="@id/login_btn"
+        android:visibility="gone"
+        android:clickable="true"
+        />
+
+    <TextView
         android:id="@+id/create_account_btn"
         android:layout_marginTop="15dp"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create account"
         android:textSize="18dp"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="@id/login_btn"
         app:layout_constraintEnd_toEndOf="@id/login_btn"
-        app:layout_constraintTop_toBottomOf="@id/login_btn"
+        app:layout_constraintTop_toBottomOf="@id/login_error_view"
         android:clickable="true"
         />
-    <ProgressBar
-        android:id="@+id/loading"
+
+    <TextView
+        android:id="@+id/google_signin"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
-        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:text="Sign in using Google"
+        android:drawableLeft="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:textSize="18dp"
+        android:textColor="@color/urbanLightGreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

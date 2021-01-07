@@ -4,29 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TransportResultsActivity">
+    tools:context=".NotificationDriverActivity">
 
     <include
         android:id="@+id/toolbar_layout"
         layout="@layout/main_toolbar" />
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout_transport_results"
+        android:id="@+id/drawer_layout_notification_driver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="@dimen/toolbar_height"
         tools:openDrawer="start">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/urbanDarkBlue" >
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_transport_results"
+            android:paddingTop="10dp"
+            android:background="@color/urbanDarkBlue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout">
+
+            <TextView
+                android:id="@id/title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/urbanDarkBlue" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Notification"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notification_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:layout_width="match_parent"
@@ -112,6 +129,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.navigation.NavigationView>
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
