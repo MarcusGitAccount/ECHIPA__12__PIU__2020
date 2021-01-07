@@ -53,6 +53,8 @@
     <string name="string_ticket_notification">Ticket notification</string>
     <string name="string_ok">OK</string>
     <string name="string_dismiss">DISMISS</string>
+    <string name="manage">MANAGE</string>
+    <string name="my_equipments">My equipments:</string>
     <string-array name="number_of_seats">
         <item>3</item>
         <item>4</item>
@@ -80,6 +82,16 @@
         <item>41</item>
         <item>42</item>
         <item>43</item>
+    </string-array>
+    <string-array name="bike_type">
+        <item>Mountain</item>
+        <item>City</item>
+    </string-array>
+
+    <string-array name="currency">
+        <item>Lei</item>
+        <item>$</item>
+        <item>€</item>
     </string-array>
 
 </resources>
