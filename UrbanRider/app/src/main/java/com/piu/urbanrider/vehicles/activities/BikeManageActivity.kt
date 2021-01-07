@@ -9,7 +9,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.R
+import com.piu.urbanrider.adapters.DrawerOptionAdapter
+import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.vehicles.Bike
 import com.piu.urbanrider.models.vehicles.Bikes
 import kotlinx.android.synthetic.main.activity_car.*
@@ -26,10 +33,22 @@ class BikeManageActivity : AppCompatActivity() {
     private lateinit var image: ImageView
     private val REQUEST_CODE = 100
     private lateinit var actionType: String
-    private var defaultImage: Int = 0
+    private var defaultImage: Int = R.drawable.ic_baseline_directions_bike_48
+
+    private lateinit var navigationDrawer: DrawerLayout
+    private lateinit var toolbar: Toolbar
+    private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var drawerOptionAdapter: DrawerOptionAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bike_manage)
+
+        this.navigationDrawer = findViewById(R.id.drawer_layout)
+        this.setupToolbar()
+        this.setupToggle()
+        this.setupDrawerOptions()
+
         populateDropBox()
         initComponents()
         displayLayoutButtons()
@@ -111,18 +130,28 @@ class BikeManageActivity : AppCompatActivity() {
     private fun addNewBike() {
 
         val id = Bikes.instance.nextId()
-        //val newBike = Bike(id, bikeBrand.toString(), "admin", rentPrice.toString().toDouble(), spinnerCurrency.toString(), image.getImageResource() )
+        val newBike = Bike(
+            id,
+            bikeBrand.text.toString(),
+            "admin",
+            rentPrice.text.toString().toDouble(),
+            spinnerCurrency.selectedItem.toString(),
+            R.drawable.ic_baseline_directions_bike_48,
+            if (spinnerType.selectedItem.toString() == "Mountain") 0 else 1
+        )
+        Bikes.instance.addBike(newBike)
+        finish()
     }
 
     private fun updateBike(id: Int) {
-        val type = if (spinnerType.toString() == "Mountain") 0 else 1
+        val type = if (spinnerType.selectedItem.toString() == "Mountain") 0 else 1
         Bikes.instance.updateBike(
             Bike(
                 id,
                 bikeBrand.text.toString(),
                 "admin",
                 rentPrice.text.toString().toDouble(),
-                spinnerCurrency.toString(),
+                spinnerCurrency.selectedItem.toString(),
                 defaultImage,
                 type
             )
@@ -132,6 +161,7 @@ class BikeManageActivity : AppCompatActivity() {
 
     private fun deleteBike(id: Int) {
         Bikes.instance.deleteBike(id)
+        finish()
     }
 
     fun uploadPhoto(view: View) {
@@ -144,5 +174,31 @@ class BikeManageActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
             image.setImageURI(data?.data) // handle chosen image
         }
+    }
+
+    private fun setupDrawerOptions() {
+        val drawerOptionsRecyclerRef = findViewById<RecyclerView>(R.id.drawer_options_rv)
+        this.drawerOptionAdapter =
+            DrawerOptionAdapter(this@BikeManageActivity, DrawerOptions().getDrawerOptions())
+        drawerOptionsRecyclerRef.adapter = this.drawerOptionAdapter
+        drawerOptionsRecyclerRef.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun setupToolbar() {
+        this.toolbar = findViewById(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_drawer_toggle)
+    }
+
+    private fun setupToggle() {
+        this.toggle = ActionBarDrawerToggle(
+            this,
+            this.navigationDrawer,
+            this.toolbar,
+            R.string.open,
+            R.string.close
+        )
     }
 }
