@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.R
 import com.piu.urbanrider.models.TransportResult
@@ -72,45 +73,21 @@ class TransportResultAdapter (private val context : Context, private val transpo
             when (viewType) {
                 R.layout.layout_common_transport_result -> {
                     transportResultCheckOcc = view.findViewById(R.id.layout_transport_result_checkocc)
-                    transportResultOrder.setOnClickListener {
-                        val builder = AlertDialog.Builder(context, R.style.MyDialogTheme)
-
-                        val ticketAlert : AlertDialog = builder.setTitle(R.string.string_ticket_notification)
-                            .setPositiveButton(context.getString(R.string.string_dismiss), { ticketAlert, which -> ticketAlert.dismiss()})
-                            .setMessage("Placed order for the selected line! Please check Tickets panel.")
-                            .setCancelable(false)
-                            .create()
-
-                        ticketAlert.show()
-
-                        ticketAlert.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundResource(R.color.urbanLightGreen)
-                        ticketAlert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(context.resources.getColor(R.color.white))
-                        ticketAlert.getButton(AlertDialog.BUTTON_POSITIVE).setPadding(2, 0, 2, 0)
-                        ticketAlert.setIcon(R.drawable.ic_option_baseline_ticket_24)
-
-                    }
-
-                    transportResultCheckOcc.setOnClickListener() {
-                        val builder = AlertDialog.Builder(view.context, R.style.ModalTheme)
-                        val builderView = LayoutInflater.from(view.context).inflate(R.layout.occ_modal_layout, null)
+                    transportResultOrder.setOnClickListener({
+                        val builder = AlertDialog.Builder(view?.context!!, R.style.ModalTheme)
+                        val builderView = LayoutInflater.from(view.context).inflate(R.layout.modal_layout_alt, null)
 
                         builder.setView(builderView)
+                        builderView.findViewById<TextView>(R.id.dialog_title).setText(R.string.string_ticket_notification)
+                        builderView.findViewById<TextView>(R.id.dialog_text1).setText(R.string.string_ticket_order_body)
+                        builderView.findViewById<TextView>(R.id.dialog_text2).isVisible = false
 
                         val dialog = builder.create()
-
-                        builderView.findViewById<TextView>(R.id.dialog_title).text = "Occupancy data for selected ride"
-                        builderView.findViewById<TextView>(R.id.dialog_text1).text =
-                            "Our approximations indicate a level of ${(30..60).random().toString()}% occupancy"
-                        builderView.findViewById<TextView>(R.id.dialog_text2).text = "You will experience slight discomfort"
-
-                        builderView.findViewById<Button>(R.id.modal_btn_dismiss).setOnClickListener() {
-                            dialog.dismiss()
-                        }
-                        builderView.findViewById<Button>(R.id.modal_btn_accept).setOnClickListener() {
+                        val okButton = builderView.findViewById<Button>(R.id.modal_btn_ok).setOnClickListener() {
                             dialog.dismiss()
                         }
                         dialog.show()
-                    }
+                    })
                 }
             }
 

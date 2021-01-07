@@ -17,7 +17,6 @@ import java.time.Duration
 
 class ReviewActivity : AppCompatActivity() {
 
-    private lateinit var navigationDrawer: DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerOptionAdapter: DrawerOptionAdapter
@@ -28,18 +27,8 @@ class ReviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
 
-        this.navigationDrawer = findViewById(R.id.drawer_layout_review)
         this.setupToolbar()
-        this.setupToggle()
-        this.setupDrawerOptions()
         this.setupButtons()
-    }
-
-    private fun setupDrawerOptions() {
-        val drawerOptionsRecyclerRef = findViewById<RecyclerView>(R.id.drawer_options_rv)
-        this.drawerOptionAdapter = DrawerOptionAdapter(this@ReviewActivity, DrawerOptions().getDrawerOptions())
-        drawerOptionsRecyclerRef.adapter = this.drawerOptionAdapter
-        drawerOptionsRecyclerRef.layoutManager = LinearLayoutManager(this)
     }
 
     private fun setupToolbar() {
@@ -47,16 +36,7 @@ class ReviewActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-    }
-
-    private fun setupToggle() {
-        this.toggle = ActionBarDrawerToggle(
-            this,
-            this.navigationDrawer,
-            this.toolbar,
-            R.string.open,
-            R.string.close
-        )
+        this.toolbar.setNavigationOnClickListener({onBackPressed()})
     }
 
     private fun setupButtons() {

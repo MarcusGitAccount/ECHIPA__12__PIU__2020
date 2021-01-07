@@ -1,32 +1,40 @@
 package com.piu.urbanrider
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.View
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.ActionBarOverlayLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.MainModalData
+import com.piu.urbanrider.vehicles.activities.BikeActivity
+import com.piu.urbanrider.vehicles.activities.CarActivity
+import com.piu.urbanrider.vehicles.activities.RollerActivity
+import com.piu.urbanrider.vehicles.activities.ScooterActivity
 
 class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -39,6 +47,16 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var toolbar: Toolbar
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerOptionAdapter: DrawerOptionAdapter
+    private lateinit var searchView: SearchView
+    private lateinit var choiceBusImageView: ImageView
+    private lateinit var choiceCarImageView: ImageView
+    private lateinit var choiceBikeImageView: ImageView
+    private lateinit var choiceRollerskatesImageView: ImageView
+    private lateinit var choiceEscooterImageView: ImageView
+
+    private var validInput : Boolean = false
+    private lateinit var destinationLocation: LatLng
+    private lateinit var sourceLocation: LatLng
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +70,8 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         this.setupToolbar()
         this.setupToggle()
         this.setupDrawerOptions()
-
+        this.setupTransportChoiceButtons()
+        this.setupSearch()
         this.setupStartModal()
     }
 
@@ -81,6 +100,68 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         )
     }
 
+    private fun setupTransportChoiceButtons() {
+        this.choiceBusImageView = findViewById(R.id.choice_bus)
+        this.choiceCarImageView = findViewById(R.id.choice_car)
+        this.choiceBikeImageView = findViewById(R.id.choice_bike)
+        this.choiceRollerskatesImageView = findViewById(R.id.choice_rollerskates)
+        this.choiceEscooterImageView = findViewById(R.id.choice_escooter)
+
+        this.choiceCarImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, CarActivity::class.java)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+        })
+        this.choiceBikeImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, BikeActivity::class.java)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+        })
+        this.choiceRollerskatesImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, RollerActivity::class.java)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+        })
+        this.choiceEscooterImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, ScooterActivity::class.java)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+        })
+    }
+
+    private fun setupSearch() {
+        this.searchView = findViewById(R.id.destinationSearchView)
+        this.searchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {return true}
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (searchView.query.toString().equals(""))
+                    validInput = false
+                else
+                    validInput = true
+                return true
+            }
+        })
+    }
+
+    private fun checkAndStartActivity(intent: Intent, message: String) {
+        if (this.validInput) {
+            intent.putExtra("destinationString", this.searchView.query.toString())
+            intent.putExtra("destinationLocationLat", this.destinationLocation.latitude)
+            intent.putExtra("destinationLocationLong", this.destinationLocation.longitude)
+            startActivity(intent)
+        }
+        else
+            Toast.makeText(this@UserMapsActivity, message, Toast.LENGTH_LONG).show()
+    }
+
+    // Utils for maps
+    private fun getBitmapDescriptor(id: Int): BitmapDescriptor? {
+        val vectorDrawable: Drawable = resources.getDrawable(id)
+        val h = 300
+        val w = 300
+        vectorDrawable.setBounds(0, 0, w, h)
+        val bm: Bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bm)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bm)
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -94,9 +175,18 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val cluj = LatLng(46.770439, 23.591423)
+        mMap.addMarker(MarkerOptions().position(cluj).title("Marker in Cluj-Napoca"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(cluj))
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng(
+                    cluj.latitude,
+                    cluj.longitude
+                ), 16.0f
+            )
+        )
+        this.destinationLocation = cluj
     }
 
     @SuppressLint("InflateParams")
