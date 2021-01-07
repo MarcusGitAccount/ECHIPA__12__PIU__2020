@@ -2,9 +2,10 @@ package com.piu.urbanrider
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.View
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
@@ -12,20 +13,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.ActionBarOverlayLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
@@ -144,6 +144,18 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Toast.makeText(this@UserMapsActivity, message, Toast.LENGTH_LONG).show()
     }
 
+    // Utils for maps
+    private fun getBitmapDescriptor(id: Int): BitmapDescriptor? {
+        val vectorDrawable: Drawable = resources.getDrawable(id)
+        val h = 300
+        val w = 300
+        vectorDrawable.setBounds(0, 0, w, h)
+        val bm: Bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bm)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bm)
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -157,9 +169,17 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val cluj = LatLng(46.770439, 23.591423)
+        mMap.addMarker(MarkerOptions().position(cluj).title("Marker in Cluj-Napoca"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(cluj))
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng(
+                    cluj.latitude,
+                    cluj.longitude
+                ), 16.0f
+            )
+        )
     }
 
     @SuppressLint("InflateParams")

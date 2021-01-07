@@ -20,4 +20,8 @@
         <item name="android:background">@color/urbanModalBackground</item>
     </style>
 
+    <style name="NoSlideInAnimTheme">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 </resources>
