@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.adapters.EquipmentAdapter
 import com.piu.urbanrider.adapters.TransportResultAdapter
@@ -24,6 +25,7 @@ import com.piu.urbanrider.models.vehicles.RideShares
 import com.piu.urbanrider.models.vehicles.RollerSkates
 import com.piu.urbanrider.models.vehicles.Scooters
 import com.piu.urbanrider.vehicles.activities.BikeManageActivity
+import com.piu.urbanrider.vehicles.activities.RollerManageActivity
 import java.util.ArrayList
 
 class OwnedEquipmentsActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
@@ -32,8 +34,9 @@ class OwnedEquipmentsActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickLi
     private lateinit var toolbar: Toolbar
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerOptionAdapter: DrawerOptionAdapter
+    private var list:ArrayList<TransportResult> = ArrayList()
 
-    private lateinit var addButton: Button
+    private lateinit var addButton: FloatingActionButton
 
     var equipmentAdapter: EquipmentAdapter? = null
     private lateinit var equipmentRecyclerView: RecyclerView
@@ -49,8 +52,8 @@ class OwnedEquipmentsActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickLi
 
 
         equipmentRecyclerView = findViewById(R.id.recycler_view_equipments)
-
-        equipmentAdapter = EquipmentAdapter(this@OwnedEquipmentsActivity, getOwnedVehicles())
+        getOwnedVehicles()
+        equipmentAdapter = EquipmentAdapter(this@OwnedEquipmentsActivity, list)
         equipmentRecyclerView.adapter = equipmentAdapter
 
         val linearLayoutManager = LinearLayoutManager(this)
@@ -58,13 +61,12 @@ class OwnedEquipmentsActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickLi
 
     }
 
-    private fun getOwnedVehicles(): ArrayList<TransportResult> {
-        val listEquipments = ArrayList<TransportResult>()
-        listEquipments.addAll(Bikes.instance.getBikesByOwner("admin"))
-        listEquipments.addAll(RideShares.instance.getCarsByOwner("admin"))
-        listEquipments.addAll(RollerSkates.instance.getRollerSkatersByOwner("admin"))
-        listEquipments.addAll(Scooters.instance.getScootersByOwner("admin"))
-        return listEquipments
+    private fun getOwnedVehicles() {
+        list.clear()
+        list.addAll(Bikes.instance.getBikesByOwner("admin"))
+        list.addAll(RideShares.instance.getCarsByOwner("admin"))
+        list.addAll(RollerSkates.instance.getRollerSkatersByOwner("admin"))
+        list.addAll(Scooters.instance.getScootersByOwner("admin"))
     }
 
     private fun setupDrawerOptions() {
@@ -100,10 +102,17 @@ class OwnedEquipmentsActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickLi
                 val bikeAddActivity = Intent(baseContext, BikeManageActivity::class.java)
                 bikeAddActivity.putExtra("ActionType", "Add")
                 startActivity(bikeAddActivity)
-                //equipmentAdapter!!.notifyDataSetChanged()
                 super.onOptionsItemSelected(item)
             }
+            R.id.add_roller -> {
+                val rollerAddActivity = Intent(baseContext, RollerManageActivity::class.java)
+                rollerAddActivity.putExtra("ActionType", "Add")
+                startActivity(rollerAddActivity)
+                super.onOptionsItemSelected(item)
+            }
+
             else -> super.onOptionsItemSelected(item)
+
         }
     }
 
@@ -114,5 +123,10 @@ class OwnedEquipmentsActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickLi
             inflate(R.menu.add_vehicle_menu)
             show()
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        getOwnedVehicles();
+        equipmentAdapter!!.notifyDataSetChanged()
     }
 }
