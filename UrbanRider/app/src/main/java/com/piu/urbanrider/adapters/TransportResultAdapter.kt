@@ -1,5 +1,6 @@
 package com.piu.urbanrider.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
@@ -51,6 +52,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         transportResults.clear()
     }
 
+    @SuppressLint("SetTextI18n")
     inner class TransportResultViewHolder(private var view : View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private lateinit var transportResultTitle : TextView
@@ -60,6 +62,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         private lateinit var transportResultCheckOcc : TextView
         private var data : TransportResult? = null
         private var pushState : Int = 0
+
 
         init {
             transportResultTitle = view.findViewById(R.id.layout_transport_result_title)
