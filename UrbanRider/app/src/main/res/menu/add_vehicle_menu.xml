@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/add_bike" android:title="Add Bike" app:showAsAction="never"/>
+    <item android:id="@+id/add_car" android:title="Add Car" app:showAsAction="never"/>
+    <item android:id="@+id/add_scooter" android:title="Add Scooter" app:showAsAction="never"/>
+    <item android:id="@+id/add_roller" android:title="Add Roller" app:showAsAction="never"/>
+</menu>

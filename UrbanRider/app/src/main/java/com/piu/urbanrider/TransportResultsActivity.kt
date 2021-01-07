@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import com.piu.urbanrider.adapters.DrawerOptionAdapter
-import com.piu.urbanrider.models.DrawerOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.adapters.TransportResultAdapter
+import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.TransportResult
 import com.piu.urbanrider.models.TransportResults
 
@@ -26,6 +26,11 @@ class TransportResultsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transport_results)
 
+        this.navigationDrawer = findViewById(R.id.drawer_layout_transport_results)
+        this.setupToolbar()
+        this.setupToggle()
+        this.setupDrawerOptions()
+
         transportResultRecyclerView = findViewById(R.id.recycler_view_transport_results)
 
         transportResultAdapter = TransportResultAdapter(this@TransportResultsActivity, TransportResults().getTestTransportResults("Bus"))
@@ -33,11 +38,6 @@ class TransportResultsActivity : AppCompatActivity() {
 
         val linearLayoutManager = LinearLayoutManager(this)
         transportResultRecyclerView.layoutManager = linearLayoutManager
-
-        this.navigationDrawer = findViewById(R.id.drawer_layout_transport_results)
-        this.setupToolbar()
-        this.setupToggle()
-        this.setupDrawerOptions()
     }
 
     private fun setupDrawerOptions() {
