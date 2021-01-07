@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/urbanDarkGreen"
+    android:paddingTop="15dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    android:layout_margin="5dp">
+
+
+    <ImageView
+        android:id="@+id/equipment_image"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_baseline_directions_car_48"
+        />
+
+    <TextView
+        android:id="@+id/equipment_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/equipment_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/equipment_image"
+        android:paddingHorizontal="10dp"
+        android:textAlignment="center"
+        android:text="@string/ion_ionescu"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/equipment_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/equipment_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/string_description_text"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/equipment_manage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/equipment_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/manage"
+        android:textColor="@color/urbanLightGreen"
+        android:textAllCaps="true"
+        android:background="@color/urbanDarkGreen"
+        android:shadowColor="@color/urbanLightGreen"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
