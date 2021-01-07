@@ -89,4 +89,10 @@ class Scooters {
         }
         return list
     }
+
+    fun getScootersByOwner(owner:String):ArrayList<TransportResult>
+    {
+        return transform(scootersList.filter { it.owner == owner })
+
+    }
 }

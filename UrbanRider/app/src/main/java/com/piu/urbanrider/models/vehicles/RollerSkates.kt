@@ -93,4 +93,9 @@ class RollerSkates {
         }
         return list
     }
+
+    fun getRollerSkatersByOwner(owner:String):ArrayList<TransportResult>
+    {
+        return transform(rollerSkatesList.filter { it.owner == owner })
+    }
 }

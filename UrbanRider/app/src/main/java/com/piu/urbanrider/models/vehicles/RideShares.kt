@@ -75,4 +75,9 @@ class RideShares {
         }
         return list
     }
+
+    fun getCarsByOwner(owner:String):ArrayList<TransportResult>
+    {
+        return transform(ridesList.filter { it.owner == owner })
+    }
 }
