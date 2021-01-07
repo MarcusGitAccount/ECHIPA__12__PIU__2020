@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.DrivingInterface
 import com.piu.urbanrider.R
+import com.piu.urbanrider.ReviewActivity
 import com.piu.urbanrider.RidePayment
 import com.piu.urbanrider.models.Notification
 
@@ -105,7 +106,12 @@ class NotificationAdapter(
                 startActivity(view.context, intent, null)
                 removeNotification(data!!)
             }
+            else if (data?.type?.equals(Notification.NotificationType.RIDE_FINISHED)!!) {
+                val intent = Intent(view.context, ReviewActivity::class.java)
 
+                startActivity(view.context, intent, null)
+                removeNotification(data!!)
+            }
         }
 
         fun removeNotification(data: Notification) {

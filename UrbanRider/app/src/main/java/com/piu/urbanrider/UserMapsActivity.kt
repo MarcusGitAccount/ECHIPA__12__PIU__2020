@@ -55,6 +55,8 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var choiceEscooterImageView: ImageView
 
     private var validInput : Boolean = false
+    private lateinit var destinationLocation: LatLng
+    private lateinit var sourceLocation: LatLng
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,8 +140,12 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun checkAndStartActivity(intent: Intent, message: String) {
-        if (this.validInput)
+        if (this.validInput) {
+            intent.putExtra("destinationString", this.searchView.query.toString())
+            intent.putExtra("destinationLocationLat", this.destinationLocation.latitude)
+            intent.putExtra("destinationLocationLong", this.destinationLocation.longitude)
             startActivity(intent)
+        }
         else
             Toast.makeText(this@UserMapsActivity, message, Toast.LENGTH_LONG).show()
     }
@@ -180,6 +186,7 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 ), 16.0f
             )
         )
+        this.destinationLocation = cluj
     }
 
     @SuppressLint("InflateParams")

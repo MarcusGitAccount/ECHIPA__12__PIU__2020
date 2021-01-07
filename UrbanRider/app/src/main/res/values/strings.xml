@@ -55,6 +55,7 @@
     <string name="string_dismiss">DISMISS</string>
     <string name="string_ticket_order_body">Your ticket has been ordered! Please check the ticket section for information.</string>
     <string name="string_non_empty_input_warning">Input must not be empty!</string>
+    <string name="string_write_review">Write your review..</string>
 
     <string-array name="number_of_seats">
         <item>3</item>
