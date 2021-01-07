@@ -58,6 +58,8 @@
     <string name="string_ticket_order_body">Your ticket has been ordered! Please check the ticket section for information.</string>
     <string name="string_non_empty_input_warning">Input must not be empty!</string>
     <string name="string_write_review">Write your review..</string>
+    <string name="start_point"><u>Gr. Alexandrescu</u></string>
+    <string name="end_point"><u>Splaiul Independentei</u></string>
     <string-array name="number_of_seats">
         <item>3</item>
         <item>4</item>
