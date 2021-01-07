@@ -16,6 +16,7 @@ import com.piu.urbanrider.models.vehicles.Car
 import com.piu.urbanrider.models.vehicles.RollerSkater
 import com.piu.urbanrider.models.vehicles.Scooter
 import com.piu.urbanrider.vehicles.activities.BikeManageActivity
+import com.piu.urbanrider.vehicles.activities.RollerManageActivity
 
 class EquipmentAdapter(
     private val context: Context,
@@ -62,6 +63,12 @@ class EquipmentAdapter(
                         bikeAddActivity.putExtra("Id", data?.id)
                         it.context.startActivity(bikeAddActivity)
                     }
+                    "RollerSkater"->{
+                        val rollerManageActivity = Intent(it.context, RollerManageActivity::class.java)
+                        rollerManageActivity.putExtra("ActionType","Manage")
+                        rollerManageActivity.putExtra("Id", data?.id)
+                        it.context.startActivity(rollerManageActivity)
+                    }
                 }
 
             }
@@ -78,6 +85,7 @@ class EquipmentAdapter(
         override fun onClick(v: View?) {
             
         }
+
     }
 
 
