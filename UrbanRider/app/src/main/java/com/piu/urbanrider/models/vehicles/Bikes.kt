@@ -15,7 +15,7 @@ class Bikes {
         val instance: Bikes by lazy { INSTANCE.INSTANCE }
     }
 
-    init{
+    init {
         getBikes()
     }
 
@@ -57,17 +57,49 @@ class Bikes {
 
     }
 
+    fun nextId(): Int {
+        return bikesList.last().id + 1
+    }
+
+    fun getBikeById(id: Int): Bike {
+        return bikesList.first { it.id == id }
+    }
+
+    fun addBike(bike: Bike) {
+        bikesList.add(bike)
+    }
+
+    fun updateBike(newBike: Bike) {
+        val index = bikesList.indexOf(getBikeById(id = newBike.id))
+        bikesList[index] = newBike
+    }
+
+    fun deleteBike(id: Int) {
+        bikesList.remove(getBikeById(id = id))
+    }
+
     fun getBikes(option: Int): List<Bike> {
         return bikesList.filter { it.bikeType == option }
     }
 
-    fun transform(result:List<Bike>):ArrayList<TransportResult>{
+    fun transform(result: List<Bike>): ArrayList<TransportResult> {
         val list = ArrayList<TransportResult>()
-        for (item in result)
-        {
-            list.add(TransportResult(item.id, "Bike", item.bikeBrand, item.owner + " " + item.price + " " + item.currency, item.image ))
+        for (item in result) {
+            list.add(
+                TransportResult(
+                    item.id,
+                    "Bike",
+                    item.bikeBrand,
+                    item.owner + " " + item.price + " " + item.currency,
+                    item.image
+                )
+            )
         }
         return list
+    }
+
+    fun getBikesByOwner(owner: String): ArrayList<TransportResult> {
+        return transform(bikesList.filter { it.owner == owner })
     }
 
 }

@@ -31,10 +31,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.MainModalData
-import com.piu.urbanrider.vehicles.activities.BikeActivity
-import com.piu.urbanrider.vehicles.activities.CarActivity
-import com.piu.urbanrider.vehicles.activities.RollerActivity
-import com.piu.urbanrider.vehicles.activities.ScooterActivity
+import com.piu.urbanrider.vehicles.activities.*
 
 class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -107,6 +104,10 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         this.choiceRollerskatesImageView = findViewById(R.id.choice_rollerskates)
         this.choiceEscooterImageView = findViewById(R.id.choice_escooter)
 
+        this.choiceBusImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, BusRideActivity::class.java)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+        })
         this.choiceCarImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, CarActivity::class.java)
             checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))

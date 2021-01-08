@@ -1,5 +1,6 @@
 package com.piu.urbanrider.vehicles.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.R
+import com.piu.urbanrider.TransportResultsActivity
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.vehicles.RollerSkates
@@ -104,7 +106,11 @@ class ScooterActivity : AppCompatActivity(), OnMapReadyCallback {
             options["battery"] = spinnerBattery.selectedItem.toString()
             val result = Scooters.instance.getScooters(options)
             val transportResults = Scooters.instance.transform(result)
-            TODO("Connection to Transport Activity")
+
+            val intent = Intent(this@ScooterActivity, TransportResultsActivity::class.java)
+            intent.putExtra("transportResults", transportResults)
+            intent.putExtra("type", R.layout.layout_private_transport_result)
+            startActivity(intent)
         }
     }
     private fun setupDrawerOptions() {

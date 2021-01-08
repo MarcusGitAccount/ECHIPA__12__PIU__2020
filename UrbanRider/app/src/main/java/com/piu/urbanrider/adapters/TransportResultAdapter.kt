@@ -18,10 +18,10 @@ import com.piu.urbanrider.models.TransportResult
 import kotlinx.android.synthetic.main.layout_common_transport_result.*
 
 
-class TransportResultAdapter (private val context : Context, private val transportResults : ArrayList<TransportResult>) : RecyclerView.Adapter<TransportResultAdapter.TransportResultViewHolder>() {
+class TransportResultAdapter (private val context : Context, private val transportResults : ArrayList<TransportResult>, private val type : Int) : RecyclerView.Adapter<TransportResultAdapter.TransportResultViewHolder>() {
 
     private val inflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    private var viewType : Int = R.layout.layout_common_transport_result
+    private var viewType : Int = type
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportResultViewHolder {
         val view = inflater.inflate(this.viewType, parent, false)
@@ -60,6 +60,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
         private lateinit var transportResultImage : ImageView
         private lateinit var transportResultOrder : TextView
         private lateinit var transportResultCheckOcc : TextView
+
         private var data : TransportResult? = null
         private var pushState : Int = 0
 

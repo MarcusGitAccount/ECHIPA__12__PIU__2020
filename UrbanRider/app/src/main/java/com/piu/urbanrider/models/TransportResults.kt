@@ -1,8 +1,9 @@
 package com.piu.urbanrider.models
 
 import com.piu.urbanrider.R
+import java.io.Serializable
 
-class TransportResults {
+class TransportResults : Serializable {
     fun getTestTransportResults(type : String): ArrayList<TransportResult> {
         val list = ArrayList<TransportResult>();
         when (type) {

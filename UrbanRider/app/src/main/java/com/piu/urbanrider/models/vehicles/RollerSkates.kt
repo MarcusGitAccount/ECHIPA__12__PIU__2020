@@ -18,6 +18,27 @@ class RollerSkates {
         getRollerSkaters()
     }
 
+    fun nextId(): Int {
+        return rollerSkatesList.last().id + 1
+    }
+
+    fun getRollerSkaterById(id: Int): RollerSkater {
+        return rollerSkatesList.first { it.id == id }
+    }
+
+    fun addRollerSkater(bike: RollerSkater) {
+        rollerSkatesList.add(bike)
+    }
+
+    fun updateRollerSkater(new: RollerSkater) {
+        val index = rollerSkatesList.indexOf(getRollerSkaterById(id = new.id))
+        rollerSkatesList[index] = new
+    }
+
+    fun deleteRollerSkater(id: Int) {
+        rollerSkatesList.remove(getRollerSkaterById(id = id))
+    }
+
     private fun getRollerSkaters() {
         rollerSkatesList = ArrayList()
         rollerSkatesList.add(
@@ -92,5 +113,10 @@ class RollerSkates {
             list.add(TransportResult(item.id, "RollerSkater", item.productName, item.owner + " " + item.price + " " + item.currency, item.image ))
         }
         return list
+    }
+
+    fun getRollerSkatersByOwner(owner:String):ArrayList<TransportResult>
+    {
+        return transform(rollerSkatesList.filter { it.owner == owner })
     }
 }
