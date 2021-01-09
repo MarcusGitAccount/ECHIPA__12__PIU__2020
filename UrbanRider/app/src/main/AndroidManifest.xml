@@ -100,8 +100,8 @@
         <activity
             android:name=".OwnedEquipmentsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-
-
+        <activity android:name=".TimerActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
