@@ -12,6 +12,30 @@
     android:background="@color/urbanDarkBlue"
     tools:context=".ui.login.LoginActivity">
 
+    <ImageView
+        android:id="@+id/login_logo"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:src="@drawable/ic_baseline_directions_bus_48"
+        app:tint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="90dp"
+    />
+
+    <TextView
+        android:id="@+id/login_logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/login_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="32sp"
+        android:text="@string/urban_rider"
+        android:textColor="@color/white"
+    />
+
     <androidx.appcompat.widget.AppCompatEditText
         android:paddingBottom="20dp"
         android:backgroundTint="@color/white"
@@ -19,17 +43,18 @@
         android:minWidth="380dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="30dp"
         android:autofillHints="@string/prompt_email"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
+        android:text="@string/string_login_cred_user"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/login_logo_text" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:paddingBottom="20dp"
@@ -43,6 +68,7 @@
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
+        android:text="@string/string_login_cred_pass"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:selectAllOnFocus="true"

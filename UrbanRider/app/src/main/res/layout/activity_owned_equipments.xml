@@ -53,7 +53,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:backgroundTint="@color/urbanLightGreen"
-                   android:background="@color/urbanLightGreen"
+                   app:borderWidth="0dp"
                    android:src="@drawable/white_plus_button"
                    android:layout_gravity="right|bottom"
                    android:layout_marginBottom="20dp"

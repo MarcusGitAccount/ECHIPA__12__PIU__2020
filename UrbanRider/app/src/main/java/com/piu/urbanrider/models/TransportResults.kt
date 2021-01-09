@@ -3,6 +3,8 @@ package com.piu.urbanrider.models
 import com.piu.urbanrider.R
 import java.io.Serializable
 
+enum class TransportType {COMMON, PRIVATE}
+
 class TransportResults : Serializable {
     fun getTestTransportResults(type : String): ArrayList<TransportResult> {
         val list = ArrayList<TransportResult>();
