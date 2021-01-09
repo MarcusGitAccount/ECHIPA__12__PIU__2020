@@ -65,6 +65,7 @@ class DrawerOptionAdapter(
                 1 -> {
                     val intent = Intent(context, NotificationDriverActivity::class.java)
                     ContextCompat.startActivity(context, intent, null)
+
                 }
                 2 -> {
                     val intent = Intent(context, TicketsActivity::class.java)
@@ -72,6 +73,10 @@ class DrawerOptionAdapter(
                 }
                 4 -> {
                     val intent = Intent(context, ChallengesActivity::class.java)
+                    ContextCompat.startActivity(context, intent, null)
+                }
+                5 -> {
+                    val intent = Intent(context, OwnedEquipmentsActivity::class.java)
                     ContextCompat.startActivity(context, intent, null)
                 }
                 6 -> {

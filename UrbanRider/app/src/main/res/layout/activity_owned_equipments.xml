@@ -29,13 +29,15 @@
                 android:textSize="23sp"
                 android:text="Eco equipments sharing"
                 android:layout_marginBottom="15dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/my_equipments"
                 android:textSize="18sp"
                 android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/white"/>
 
            <FrameLayout
@@ -51,6 +53,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:backgroundTint="@color/urbanLightGreen"
+                   app:borderWidth="0dp"
                    android:src="@drawable/white_plus_button"
                    android:layout_gravity="right|bottom"
                    android:layout_marginBottom="20dp"

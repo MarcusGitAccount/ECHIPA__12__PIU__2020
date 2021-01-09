@@ -29,12 +29,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
-import com.piu.urbanrider.models.DrawerOptions
-import com.piu.urbanrider.models.MainModalData
-import com.piu.urbanrider.vehicles.activities.BikeActivity
-import com.piu.urbanrider.vehicles.activities.CarActivity
-import com.piu.urbanrider.vehicles.activities.RollerActivity
-import com.piu.urbanrider.vehicles.activities.ScooterActivity
+import com.piu.urbanrider.models.*
+import com.piu.urbanrider.vehicles.activities.*
 
 class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -107,21 +103,25 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         this.choiceRollerskatesImageView = findViewById(R.id.choice_rollerskates)
         this.choiceEscooterImageView = findViewById(R.id.choice_escooter)
 
+        this.choiceBusImageView.setOnClickListener({
+            val intent = Intent(this@UserMapsActivity, TransportResultsActivity::class.java)
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning), TransportType.COMMON)
+        })
         this.choiceCarImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, CarActivity::class.java)
-            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning), TransportType.PRIVATE)
         })
         this.choiceBikeImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, BikeActivity::class.java)
-            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning), TransportType.PRIVATE)
         })
         this.choiceRollerskatesImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, RollerActivity::class.java)
-            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning), TransportType.PRIVATE)
         })
         this.choiceEscooterImageView.setOnClickListener({
             val intent = Intent(this@UserMapsActivity, ScooterActivity::class.java)
-            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning))
+            checkAndStartActivity(intent, getString(R.string.string_non_empty_input_warning), TransportType.PRIVATE)
         })
     }
 
@@ -139,11 +139,19 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
     }
 
-    private fun checkAndStartActivity(intent: Intent, message: String) {
+    private fun checkAndStartActivity(intent: Intent, message: String, transportType : TransportType) {
         if (this.validInput) {
-            intent.putExtra("destinationString", this.searchView.query.toString())
-            intent.putExtra("destinationLocationLat", this.destinationLocation.latitude)
-            intent.putExtra("destinationLocationLong", this.destinationLocation.longitude)
+            when(transportType) {
+                TransportType.COMMON -> {
+                    intent.putExtra("transportResults", TransportResults().getTestTransportResults("Bus"))
+                    intent.putExtra("type", R.layout.layout_common_transport_result)
+                }
+                TransportType.PRIVATE -> {
+                    intent.putExtra("destinationString", this.searchView.query.toString())
+                    intent.putExtra("destinationLocationLat", this.destinationLocation.latitude)
+                    intent.putExtra("destinationLocationLong", this.destinationLocation.longitude)
+                }
+            }
             startActivity(intent)
         }
         else

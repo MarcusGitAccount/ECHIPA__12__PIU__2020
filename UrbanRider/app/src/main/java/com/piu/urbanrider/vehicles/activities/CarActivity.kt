@@ -1,5 +1,6 @@
 package com.piu.urbanrider.vehicles.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.R
+import com.piu.urbanrider.TransportResultsActivity
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.vehicles.RideShares
@@ -84,8 +86,12 @@ class CarActivity : AppCompatActivity(), OnMapReadyCallback {
             options["pets"] = if (checkBox_pets.isChecked) "Yes" else "No"
             options["protection"] = if (checkBox_protection.isChecked) "Yes" else "No"
             val result = RideShares.instance.getRides(options)
-            val tranportResults = RideShares.instance.transform(result)
-            TODO("Connection to Transport Activity")
+            val transportResults = RideShares.instance.transform(result)
+
+            val intent = Intent(this@CarActivity, TransportResultsActivity::class.java)
+            intent.putExtra("transportResults", transportResults)
+            intent.putExtra("type", R.layout.layout_private_transport_result)
+            startActivity(intent)
         }
     }
     private fun setupDrawerOptions() {

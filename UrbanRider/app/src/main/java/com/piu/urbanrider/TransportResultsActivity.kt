@@ -22,6 +22,9 @@ class TransportResultsActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerOptionAdapter: DrawerOptionAdapter
 
+    private lateinit var transportResults : ArrayList<TransportResult>
+    private var transportResultsType : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transport_results)
@@ -31,9 +34,11 @@ class TransportResultsActivity : AppCompatActivity() {
         this.setupToggle()
         this.setupDrawerOptions()
 
-        transportResultRecyclerView = findViewById(R.id.recycler_view_transport_results)
+        this.transportResults = intent.getSerializableExtra("transportResults") as ArrayList<TransportResult>
+        this.transportResultsType = intent.getIntExtra("type", 0)
 
-        transportResultAdapter = TransportResultAdapter(this@TransportResultsActivity, TransportResults().getTestTransportResults("Bus"))
+        transportResultRecyclerView = findViewById(R.id.recycler_view_transport_results)
+        transportResultAdapter = TransportResultAdapter(this@TransportResultsActivity, transportResults, this.transportResultsType)
         transportResultRecyclerView.adapter = transportResultAdapter
 
         val linearLayoutManager = LinearLayoutManager(this)

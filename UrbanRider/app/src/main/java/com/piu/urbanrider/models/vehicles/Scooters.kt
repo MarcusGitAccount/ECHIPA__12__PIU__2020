@@ -85,7 +85,7 @@ class Scooters {
         val list = ArrayList<TransportResult>()
         for (item in result)
         {
-            list.add(TransportResult(item.id, "Bike", item.scooterBrand, item.owner + " " + item.price + " " + item.currency, item.image ))
+            list.add(TransportResult(item.id, "Scooter", item.scooterBrand, item.owner + " " + item.price + " " + item.currency, item.image ))
         }
         return list
     }

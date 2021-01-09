@@ -1,5 +1,6 @@
 package com.piu.urbanrider.vehicles.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.R
+import com.piu.urbanrider.TransportResultsActivity
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.vehicles.RollerSkates
@@ -118,7 +120,11 @@ class RollerActivity : AppCompatActivity(), OnMapReadyCallback {
             options["shoes_number"] = spinner.selectedItem.toString()
             val result = RollerSkates.instance.getRollerSkaters(options)
             val transportResults = RollerSkates.instance.transform(result)
-            TODO("Connection to Transport Activity")
+
+            val intent = Intent(this@RollerActivity, TransportResultsActivity::class.java)
+            intent.putExtra("transportResults", transportResults)
+            intent.putExtra("type", R.layout.layout_private_transport_result)
+            startActivity(intent)
         }
     }
 
