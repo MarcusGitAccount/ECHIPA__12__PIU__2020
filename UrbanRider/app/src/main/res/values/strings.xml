@@ -62,6 +62,7 @@
     <string name="end_point"><u>Splaiul Independentei</u></string>
     <string name="string_login_cred_user">admin@gmail.com</string>
     <string name="string_login_cred_pass">123</string>
+    <string name="string_logged_out">Logged out</string>
     <string-array name="number_of_seats">
         <item>3</item>
         <item>4</item>
