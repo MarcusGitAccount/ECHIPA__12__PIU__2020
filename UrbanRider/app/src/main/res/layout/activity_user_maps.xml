@@ -172,6 +172,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <Button
+                            android:id="@+id/driver_mode_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:background="@color/urbanViolet"
