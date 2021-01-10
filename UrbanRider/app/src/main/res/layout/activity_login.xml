@@ -12,29 +12,42 @@
     android:background="@color/urbanDarkBlue"
     tools:context=".ui.login.LoginActivity">
 
-    <ImageView
-        android:id="@+id/login_logo"
-        android:layout_width="400px"
-        android:layout_height="400px"
-        android:src="@drawable/ic_baseline_directions_bus_48"
-        app:tint="@color/white"
+    <LinearLayout
+        android:id="@+id/logo_layout"
+        app:layout_constraintBottom_toTopOf="@id/username"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="90dp"
-    />
-
-    <TextView
-        android:id="@+id/login_logo_text"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/login_logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="32sp"
-        android:text="@string/urban_rider"
-        android:textColor="@color/white"
-    />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_baseline_directions_bus_48"
+            app:tint="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/username"
+            />
+
+        <TextView
+            android:id="@+id/login_logo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/login_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="32sp"
+            android:text="@string/urban_rider"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:paddingBottom="20dp"
@@ -43,7 +56,7 @@
         android:minWidth="380dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:autofillHints="@string/prompt_email"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
@@ -51,10 +64,9 @@
         android:text="@string/string_login_cred_user"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_logo_text" />
+        app:layout_constraintTop_toBottomOf="@id/logo_layout" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:paddingBottom="20dp"
@@ -97,7 +109,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
         android:background="@drawable/btn_round_corners"
         android:padding="5dp"
         android:textColor="@color/white"
@@ -105,7 +116,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password_btn"
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
