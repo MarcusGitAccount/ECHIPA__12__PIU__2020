@@ -99,6 +99,7 @@ class TransportResultAdapter (private val context : Context,
                             .setOnClickListener() {
                                 dialog.dismiss()
                                 val intent = Intent(it.context, BusRideActivity::class.java)
+                                println(destinationString)
                                 intent.putExtra("destinationString", destinationString)
                                 it.context.startActivity(intent)
                             }
