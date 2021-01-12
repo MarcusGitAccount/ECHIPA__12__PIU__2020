@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.NotificationDriverActivity
@@ -15,6 +16,7 @@ import com.piu.urbanrider.TicketsActivity
 import com.piu.urbanrider.UserMapsActivity
 import com.piu.urbanrider.models.DrawerOption
 import com.piu.urbanrider.*
+import org.jetbrains.anko.style
 
 class DrawerOptionAdapter(
     private val context: Context,
@@ -34,6 +36,9 @@ class DrawerOptionAdapter(
 
     override fun onBindViewHolder(holder: DrawerOptionViewHolder, position: Int) {
         holder.bindData(drawerOptions[position])
+        if (position == 7) {
+            holder.itemView.setBackgroundResource(R.drawable.top_border)
+        }
     }
 
     fun addItem(index: Int, drawerOption: DrawerOption) {
@@ -42,6 +47,7 @@ class DrawerOptionAdapter(
 
     inner class DrawerOptionViewHolder(private var view: View) : RecyclerView.ViewHolder(view),
         View.OnClickListener {
+
         private lateinit var drawerOptionText: TextView
         private lateinit var drawerOptionIcon: ImageView
         private var data: DrawerOption? = null
@@ -65,7 +71,6 @@ class DrawerOptionAdapter(
                 1 -> {
                     val intent = Intent(context, NotificationDriverActivity::class.java)
                     ContextCompat.startActivity(context, intent, null)
-
                 }
                 2 -> {
                     val intent = Intent(context, TicketsActivity::class.java)
@@ -81,6 +86,11 @@ class DrawerOptionAdapter(
                 }
                 6 -> {
                     val intent = Intent(context, UserMapsActivity::class.java)
+                    ContextCompat.startActivity(context, intent, null)
+                }
+                7 -> {
+                    val intent = Intent(context, MainActivity::class.java)
+                    Toast.makeText(context, context.getString(R.string.string_logged_out), Toast.LENGTH_SHORT).show()
                     ContextCompat.startActivity(context, intent, null)
                 }
             }

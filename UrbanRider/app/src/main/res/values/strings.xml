@@ -62,6 +62,7 @@
     <string name="end_point"><u>Splaiul Independentei</u></string>
     <string name="string_login_cred_user">admin@gmail.com</string>
     <string name="string_login_cred_pass">123</string>
+    <string name="string_logged_out">Logged out</string>
     <string name="finish_ride">Finish ride</string>
     <string name="you_have_started_your_ride_enjoy">You have started your ride, enjoy !</string>
     <string name="enjoy_your_ride_press_finish_ride_when_you_end_your_trip">Enjoy your ride ! Press FINISH RIDE when you end your trip</string>
