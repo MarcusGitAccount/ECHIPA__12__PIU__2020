@@ -60,6 +60,14 @@ class DrawerOptions {
                 R.drawable.ic_option_baseline_dashboard_24
             )
         )
+        list.add(
+            DrawerOption(
+                1,
+                "Logout",
+                R.drawable.ic_baseline_logout_24
+            )
+        )
+
         return list
     }
 
