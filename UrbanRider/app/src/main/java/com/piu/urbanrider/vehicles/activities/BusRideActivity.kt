@@ -1,8 +1,11 @@
 package com.piu.urbanrider.vehicles.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +15,7 @@ import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 
 class BusRideActivity : AppCompatActivity() {
+    private lateinit var destinationString: String
 
     private lateinit var navigationDrawer: DrawerLayout
     private lateinit var toolbar: Toolbar
@@ -26,6 +30,19 @@ class BusRideActivity : AppCompatActivity() {
         this.setupToolbar()
         this.setupToggle()
         this.setupDrawerOptions()
+
+        this.destinationString = intent.getStringExtra("destinationString").toString()
+
+        val sourceSearchView = findViewById<SearchView>(R.id.current_location_sv)
+        val destinationSearchView = findViewById<SearchView>(R.id.destination_sv)
+
+        sourceSearchView.setQuery("Current location", false)
+        destinationSearchView.setQuery(this.destinationString, false)
+
+        Handler().postDelayed({
+            val notificationIntent = Intent(baseContext, BusRideActivityWithNotification::class.java)
+            startActivity(notificationIntent)
+        }, 10000)
     }
 
     private fun setupDrawerOptions() {
