@@ -105,6 +105,28 @@ class TransportResultAdapter (private val context : Context,
                             }
                         dialog.show()
                     }
+
+                    transportResultCheckOcc.setOnClickListener() {
+                        val builder = AlertDialog.Builder(view.context, R.style.ModalTheme)
+                        val builderView = LayoutInflater.from(view.context).inflate(R.layout.occ_modal_layout, null)
+
+                        builder.setView(builderView)
+
+                        val dialog = builder.create()
+
+                        builderView.findViewById<TextView>(R.id.dialog_title).text = "Occupancy data for selected ride"
+                        builderView.findViewById<TextView>(R.id.dialog_text1).text =
+                            "Our approximations indicate a level of ${(30..60).random().toString()}% occupancy"
+                        builderView.findViewById<TextView>(R.id.dialog_text2).text = "You will experience slight discomfort"
+
+                        builderView.findViewById<Button>(R.id.modal_btn_dismiss).setOnClickListener() {
+                            dialog.dismiss()
+                        }
+                        builderView.findViewById<Button>(R.id.modal_btn_accept).setOnClickListener() {
+                            dialog.dismiss()
+                        }
+                        dialog.show()
+                    }
                 }
                 R.layout.layout_private_transport_result -> {
                     transportResultOrder.setOnClickListener {
