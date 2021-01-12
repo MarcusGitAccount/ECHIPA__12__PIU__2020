@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.widget.TextView
 import com.piu.urbanrider.models.DashboardOptions
 
-class DriverDashboard : AppCompatActivity() {
+class DriverDashboard : BasicDrawerActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driver_dashboard)
+
+        this.setup()
 
         findViewById<TextView>(R.id.dashboard_profit).text = DashboardOptions.profit.toString() + "RON"
         findViewById<TextView>(R.id.dashboard_ride_count).text = DashboardOptions.rideCount.toString()

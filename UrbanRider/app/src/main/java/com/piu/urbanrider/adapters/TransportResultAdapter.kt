@@ -3,6 +3,7 @@ package com.piu.urbanrider.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.R
+import com.piu.urbanrider.TimerActivity
 import com.piu.urbanrider.models.TransportResult
 import kotlinx.android.synthetic.main.layout_common_transport_result.*
 
@@ -73,21 +76,32 @@ class TransportResultAdapter (private val context : Context, private val transpo
 
             when (viewType) {
                 R.layout.layout_common_transport_result -> {
-                    transportResultCheckOcc = view.findViewById(R.id.layout_transport_result_checkocc)
+                    transportResultCheckOcc =
+                        view.findViewById(R.id.layout_transport_result_checkocc)
                     transportResultOrder.setOnClickListener({
                         val builder = AlertDialog.Builder(view?.context!!, R.style.ModalTheme)
-                        val builderView = LayoutInflater.from(view.context).inflate(R.layout.modal_layout_alt, null)
+                        val builderView = LayoutInflater.from(view.context)
+                            .inflate(R.layout.modal_layout_alt, null)
 
                         builder.setView(builderView)
-                        builderView.findViewById<TextView>(R.id.dialog_title).setText(R.string.string_ticket_notification)
-                        builderView.findViewById<TextView>(R.id.dialog_text1).setText(R.string.string_ticket_order_body)
+                        builderView.findViewById<TextView>(R.id.dialog_title)
+                            .setText(R.string.string_ticket_notification)
+                        builderView.findViewById<TextView>(R.id.dialog_text1)
+                            .setText(R.string.string_ticket_order_body)
                         builderView.findViewById<TextView>(R.id.dialog_text2).isVisible = false
 
                         val dialog = builder.create()
-                        val okButton = builderView.findViewById<Button>(R.id.modal_btn_ok).setOnClickListener() {
-                            dialog.dismiss()
-                        }
+                        val okButton = builderView.findViewById<Button>(R.id.modal_btn_ok)
+                            .setOnClickListener() {
+                                dialog.dismiss()
+                            }
                         dialog.show()
+                    })
+                }
+                R.layout.layout_private_transport_result -> {
+                    transportResultOrder.setOnClickListener({
+                        val intent = Intent(view.context, TimerActivity::class.java)
+                        ContextCompat.startActivity(view.context, intent, null)
                     })
                 }
             }

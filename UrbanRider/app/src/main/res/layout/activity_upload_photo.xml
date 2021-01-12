@@ -115,6 +115,21 @@
                         app:layout_constraintTop_toTopOf="parent"
                         />
 
+                    <Button
+                        android:id="@+id/upload_ok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@color/urbanLightGreen"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="@string/string_ok"
+                        android:onClick="endFlow"
+                        android:enabled="false"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/upload_photo_text"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
