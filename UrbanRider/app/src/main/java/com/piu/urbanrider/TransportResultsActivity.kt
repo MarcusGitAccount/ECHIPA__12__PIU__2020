@@ -24,6 +24,7 @@ class TransportResultsActivity : AppCompatActivity() {
 
     private lateinit var transportResults : ArrayList<TransportResult>
     private var transportResultsType : Int = 0
+    lateinit var destinationString:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +35,12 @@ class TransportResultsActivity : AppCompatActivity() {
         this.setupToggle()
         this.setupDrawerOptions()
 
+        this.destinationString = intent.getStringExtra("destinationString").toString()
         this.transportResults = intent.getSerializableExtra("transportResults") as ArrayList<TransportResult>
         this.transportResultsType = intent.getIntExtra("type", 0)
 
         transportResultRecyclerView = findViewById(R.id.recycler_view_transport_results)
-        transportResultAdapter = TransportResultAdapter(this@TransportResultsActivity, transportResults, this.transportResultsType)
+        transportResultAdapter = TransportResultAdapter(this@TransportResultsActivity, transportResults, this.transportResultsType, destinationString)
         transportResultRecyclerView.adapter = transportResultAdapter
 
         val linearLayoutManager = LinearLayoutManager(this)

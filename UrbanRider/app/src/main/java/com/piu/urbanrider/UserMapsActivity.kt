@@ -116,6 +116,7 @@ class UserMapsActivity : BasicDrawerActivity(), OnMapReadyCallback {
             when(transportType) {
                 TransportType.COMMON -> {
                     intent.putExtra("transportResults", TransportResults().getTestTransportResults("Bus"))
+                    intent.putExtra("destinationString", this.searchView.query.toString())
                     intent.putExtra("type", R.layout.layout_common_transport_result)
                 }
                 TransportType.PRIVATE -> {
