@@ -1,5 +1,6 @@
 package com.piu.urbanrider.vehicles.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.R
+import com.piu.urbanrider.TransportResultsActivity
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.DrawerOptions
 import com.piu.urbanrider.models.vehicles.Bikes
@@ -70,7 +72,12 @@ class BikeActivity : AppCompatActivity(), OnMapReadyCallback {
         button.setOnClickListener() {
             val result = Bikes.instance.getBikes(option)
             val transportResults = Bikes.instance.transform(result)
-            TODO("Connection to Transport Activity")
+
+            val intent = Intent(this@BikeActivity, TransportResultsActivity::class.java)
+            intent.putExtra("transportResults", transportResults)
+            intent.putExtra("destinationString", this.destinationString)
+            intent.putExtra("type", R.layout.layout_private_transport_result)
+            startActivity(intent)
         }
     }
     fun radio_button_on_click(view: View)
