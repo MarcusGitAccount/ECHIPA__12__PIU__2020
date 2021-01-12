@@ -54,6 +54,5 @@ class TicketViewHolder(private var view: View): RecyclerView.ViewHolder(view), V
 
     }
     override fun onClick(v: View?) {
-        TODO("Accept/dissmis")
     }
 }

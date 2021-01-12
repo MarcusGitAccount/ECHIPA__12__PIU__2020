@@ -124,6 +124,8 @@ class RollerActivity : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this@RollerActivity, TransportResultsActivity::class.java)
             intent.putExtra("transportResults", transportResults)
             intent.putExtra("type", R.layout.layout_private_transport_result)
+            intent.putExtra("transportImage", R.drawable.ic_baseline_rollerskates_48)
+            intent.putExtra("destinationString", this.destinationString)
             startActivity(intent)
         }
     }
@@ -141,6 +143,7 @@ class RollerActivity : AppCompatActivity(), OnMapReadyCallback {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_drawer_toggle)
     }
 
     private fun setupToggle() {

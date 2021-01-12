@@ -110,6 +110,8 @@ class ScooterActivity : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this@ScooterActivity, TransportResultsActivity::class.java)
             intent.putExtra("transportResults", transportResults)
             intent.putExtra("type", R.layout.layout_private_transport_result)
+            intent.putExtra("transportImage", R.drawable.ic_baseline_electric_scooter_48)
+            intent.putExtra("destinationString", this.destinationString)
             startActivity(intent)
         }
     }
