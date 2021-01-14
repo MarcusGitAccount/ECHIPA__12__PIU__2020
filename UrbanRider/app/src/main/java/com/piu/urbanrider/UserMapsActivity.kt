@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,18 +32,16 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.piu.urbanrider.adapters.DrawerOptionAdapter
 import com.piu.urbanrider.models.*
 import com.piu.urbanrider.vehicles.activities.*
+import java.sql.DriverPropertyInfo
 
-class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class UserMapsActivity : BasicDrawerActivity(), OnMapReadyCallback {
 
     companion object {
         const val INTENT_EXTRA_NOTIFICATION: String = "notification"
     }
 
     private lateinit var mMap: GoogleMap
-    private lateinit var navigationDrawer: DrawerLayout
-    private lateinit var toolbar: Toolbar
-    private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var drawerOptionAdapter: DrawerOptionAdapter
+
     private lateinit var searchView: SearchView
     private lateinit var choiceBusImageView: ImageView
     private lateinit var choiceCarImageView: ImageView
@@ -62,39 +61,12 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        this.navigationDrawer = findViewById(R.id.drawer_layout)
-        this.setupToolbar()
-        this.setupToggle()
-        this.setupDrawerOptions()
+        this.setup()
         this.setupTransportChoiceButtons()
         this.setupSearch()
         this.setupStartModal()
     }
 
-    private fun setupDrawerOptions() {
-        val drawerOptionsRecyclerRef = findViewById<RecyclerView>(R.id.drawer_options_rv)
-        this.drawerOptionAdapter = DrawerOptionAdapter(this@UserMapsActivity, DrawerOptions().getDrawerOptions())
-        drawerOptionsRecyclerRef.adapter = this.drawerOptionAdapter
-        drawerOptionsRecyclerRef.layoutManager = LinearLayoutManager(this)
-    }
-
-    private fun setupToolbar() {
-        this.toolbar = findViewById(R.id.main_toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_drawer_toggle)
-    }
-
-    private fun setupToggle() {
-        this.toggle = ActionBarDrawerToggle(
-            this,
-            this.navigationDrawer,
-            this.toolbar,
-            R.string.open,
-            R.string.close
-        )
-    }
 
     private fun setupTransportChoiceButtons() {
         this.choiceBusImageView = findViewById(R.id.choice_bus)
@@ -163,8 +135,8 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     // Utils for maps
     private fun getBitmapDescriptor(id: Int): BitmapDescriptor? {
         val vectorDrawable: Drawable = resources.getDrawable(id)
-        val h = 300
-        val w = 300
+        val h = 150
+        val w = 150
         vectorDrawable.setBounds(0, 0, w, h)
         val bm: Bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
@@ -184,9 +156,16 @@ class UserMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
         val cluj = LatLng(46.770439, 23.591423)
-        mMap.addMarker(MarkerOptions().position(cluj).title("Marker in Cluj-Napoca"))
+
+        if (!DashboardOptions.isDriving) {
+            mMap.addMarker(MarkerOptions().position(cluj).title("Marker in Cluj-Napoca"))
+        } else {
+            mMap.addMarker(MarkerOptions()
+                .position(cluj)
+                .title("Marker in Cluj-Napoca")
+                .icon(getBitmapDescriptor(R.drawable.icons8_car_96)))
+        }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cluj))
         mMap.animateCamera(
             CameraUpdateFactory.newLatLngZoom(
