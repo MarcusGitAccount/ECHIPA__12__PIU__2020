@@ -119,7 +119,7 @@ class UserMapsActivity : BasicDrawerActivity(), OnMapReadyCallback {
                     intent.putExtra("destinationString", this.searchView.query.toString())
                     intent.putExtra("type", R.layout.layout_common_transport_result)
                     intent.putExtra("transportImage", R.drawable.ic_baseline_directions_bus_48)
-
+                  
                 }
                 TransportType.PRIVATE -> {
                     intent.putExtra("destinationString", this.searchView.query.toString())
