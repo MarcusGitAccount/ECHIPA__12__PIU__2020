@@ -18,10 +18,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.piu.urbanrider.R
 import com.piu.urbanrider.TimerActivity
 import com.piu.urbanrider.models.TransportResult
+import com.piu.urbanrider.vehicles.activities.BusRideActivity
 import kotlinx.android.synthetic.main.layout_common_transport_result.*
 
 
-class TransportResultAdapter (private val context : Context, private val transportResults : ArrayList<TransportResult>, private val type : Int) : RecyclerView.Adapter<TransportResultAdapter.TransportResultViewHolder>() {
+class TransportResultAdapter (private val context : Context,
+                              private val transportResults : ArrayList<TransportResult>,
+                              private val type : Int,
+                              private val destinationString:String) : RecyclerView.Adapter<TransportResultAdapter.TransportResultViewHolder>() {
 
     private val inflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private var viewType : Int = type
@@ -78,7 +82,7 @@ class TransportResultAdapter (private val context : Context, private val transpo
                 R.layout.layout_common_transport_result -> {
                     transportResultCheckOcc =
                         view.findViewById(R.id.layout_transport_result_checkocc)
-                    transportResultOrder.setOnClickListener({
+                    transportResultOrder.setOnClickListener {
                         val builder = AlertDialog.Builder(view?.context!!, R.style.ModalTheme)
                         val builderView = LayoutInflater.from(view.context)
                             .inflate(R.layout.modal_layout_alt, null)
@@ -94,15 +98,41 @@ class TransportResultAdapter (private val context : Context, private val transpo
                         val okButton = builderView.findViewById<Button>(R.id.modal_btn_ok)
                             .setOnClickListener() {
                                 dialog.dismiss()
+                                val intent = Intent(it.context, BusRideActivity::class.java)
+                                println(destinationString)
+                                intent.putExtra("destinationString", destinationString)
+                                it.context.startActivity(intent)
                             }
                         dialog.show()
-                    })
+                    }
+
+                    transportResultCheckOcc.setOnClickListener() {
+                        val builder = AlertDialog.Builder(view.context, R.style.ModalTheme)
+                        val builderView = LayoutInflater.from(view.context).inflate(R.layout.occ_modal_layout, null)
+
+                        builder.setView(builderView)
+
+                        val dialog = builder.create()
+
+                        builderView.findViewById<TextView>(R.id.dialog_title).text = "Occupancy data for selected ride"
+                        builderView.findViewById<TextView>(R.id.dialog_text1).text =
+                            "Our approximations indicate a level of ${(30..60).random().toString()}% occupancy"
+                        builderView.findViewById<TextView>(R.id.dialog_text2).text = "You will experience slight discomfort"
+
+                        builderView.findViewById<Button>(R.id.modal_btn_dismiss).setOnClickListener() {
+                            dialog.dismiss()
+                        }
+                        builderView.findViewById<Button>(R.id.modal_btn_accept).setOnClickListener() {
+                            dialog.dismiss()
+                        }
+                        dialog.show()
+                    }
                 }
                 R.layout.layout_private_transport_result -> {
-                    transportResultOrder.setOnClickListener({
+                    transportResultOrder.setOnClickListener {
                         val intent = Intent(view.context, TimerActivity::class.java)
                         ContextCompat.startActivity(view.context, intent, null)
-                    })
+                    }
                 }
             }
 
